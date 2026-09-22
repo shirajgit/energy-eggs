@@ -1,6 +1,7 @@
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
+import VolumeCommitment from '../components/VolumeCommitment'
 
 export default function About() {
   return (
@@ -31,6 +32,8 @@ export default function About() {
           />
         </div>
       </section>
+
+      <VolumeCommitment alt />
     </>
   )
 }
