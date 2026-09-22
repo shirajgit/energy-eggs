@@ -1,12 +1,31 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import SprintingHen from '../components/SprintingHen'
+import sonaliImg from '../assets/sonali.png'
+import aseelImg from '../assets/aseel.png'
+import kadaknathImg from '../assets/kadaknath.png'
+import fiyoumiImg from '../assets/fiyoumi.png'
+
+const BREEDS: [name: string, rate: string, img: string][] = [
+  ['Sonali', '₹500 /kg', sonaliImg],
+  ['Aseel', '₹700 /kg', aseelImg],
+  ['Kadaknath', '₹750 /kg', kadaknathImg],
+  ['Fiyoumi', '₹1,500 /kg', fiyoumiImg],
+]
+
+const PATHS: [tag: string, title: string, text: string, cta: string, to: string][] = [
+  ['For Buyers', 'I want to buy', 'Birds, eggs, feed and equipment for restaurants, retailers, distributors and food businesses — with published rate cards and structured supply programmes.', 'Explore B2B Supply →', '/b2b-supply'],
+  ['For Farmers', 'I want to farm', 'Partner with Energy Eggs through structured contract farming — fixed-price egg procurement, 15-day payments, flock buyback and full technical support.', 'See Contract Farming →', '/contract-farming'],
+  ['For Landowners', 'I want to build a farm', 'Have land? We help with farm design, shed construction, pasture planning and equipment to develop a productive desi poultry farm.', 'Start Farm Development →', '/farm-development'],
+]
+
+const BRAND_VALUES = ['Healthy Birds', 'Natural Feed', 'Ethical Farming', 'Better Taste & Nutrition', 'Farm Raised', 'Honest Food']
 
 const WHAT_WE_DO = [
   {
     to: '/birds',
     title: 'Whole Birds',
-    text: 'Sonali • Kadaknath • Aseel',
+    text: 'Sonali • Aseel • Kadaknath • Fiyoumi',
     icon: (
       <>
         <circle cx="12" cy="9" r="5" />
@@ -107,7 +126,7 @@ export default function Home() {
                 <Link to="/contract-farming" className="btn ghost">Become a Farmer Partner</Link>
               </div>
               <div className="hero-stats">
-                <div><span className="n">3 Breeds</span><small>Sonali · Kadaknath · Aseel</small></div>
+                <div><span className="n">4 Breeds</span><small>Sonali · Aseel · Kadaknath · Fiyoumi</small></div>
                 <div><span className="n">2 Models</span><small>Deep Litter · Pasture-Raised</small></div>
                 <div><span className="n">End-to-End</span><small>Farm to B2B Market</small></div>
               </div>
@@ -145,8 +164,8 @@ export default function Home() {
             <h2>Desi poultry. Built for business.</h2>
             <p>
               Energy Eggs is a B2B poultry company connecting farmers, poultry farms and food
-              businesses through a complete desi poultry ecosystem. We supply Sonali, Kadaknath and
-              Aseel birds and eggs, provide poultry equipment and farm infrastructure, develop desi
+              businesses through a complete desi poultry ecosystem. We supply Sonali, Aseel,
+              Kadaknath and Fiyoumi birds and eggs, provide poultry equipment and farm infrastructure, develop desi
               poultry farms with pasture planning, and work with farmers through structured contract
               farming models.
             </p>
@@ -191,6 +210,58 @@ export default function Home() {
         </div>
       </section>
 
+      {/* BREED SHOWCASE */}
+      <section>
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <span className="eyebrow">Our Breeds</span>
+            <h2>Four desi breeds. <span className="script">One supply partner.</span></h2>
+            <p>Traditionally raised, naturally stronger — with transparent, published per-kg rates.</p>
+          </Reveal>
+          <div className="breed-minis">
+            {BREEDS.map(([name, rate, img]) => (
+              <Reveal key={name} className="in">
+                <Link to="/birds" className="breed-mini">
+                  <div className="bm-img"><img src={img} alt={`${name} bird`} loading="lazy" /></div>
+                  <h3>{name}</h3>
+                  <span className="bm-rate">{rate}</span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="chip-row">
+            <div className="chips">
+              <span className="pill">Live bird rates by age — day-old to 20+ weeks</span>
+              <span className="pill">Minimum order 10 birds</span>
+              <span className="pill">Quail also available</span>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CHOOSE YOUR PATH */}
+      <section className="alt">
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <span className="eyebrow">Where Do You Fit?</span>
+            <h2>Three ways into the ecosystem</h2>
+            <p>Whether you buy poultry, farm it, or want to start — there's a structured path for you.</p>
+          </Reveal>
+          <div className="cards-3">
+            {PATHS.map(([tag, title, text, cta, to]) => (
+              <Reveal key={title} className="in">
+                <Link to={to} className="breed-card path-card">
+                  <span className="eyebrow">{tag}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                  <span className="panel-link">{cta}</span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* WHY ENERGY EGGS */}
       <section className="values">
         <div className="wrap">
@@ -207,6 +278,43 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* PRICING SNAPSHOT */}
+      <section>
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <span className="eyebrow">Transparent Pricing</span>
+            <h2>Published rate cards. No guesswork.</h2>
+            <p>
+              Live bird rates by breed and age, and per-egg ex-farm prices tiered by monthly
+              commitment — from ₹10.75 to ₹12.00 per egg, with processing add-ons from ₹0.00 to
+              ₹1.00. Commit a monthly volume and unlock preferential slabs with priority supply.
+            </p>
+          </Reveal>
+          <div className="hero-cta" style={{ justifyContent: 'center' }}>
+            <Link to="/birds" className="btn ghost">Bird Rate Card</Link>
+            <Link to="/eggs" className="btn ghost">Egg Rate Card</Link>
+            <Link to="/b2b-supply#volume-commitment" className="btn">Volume Commitment Program</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* BRAND PROMISE */}
+      <section className="alt brand-strip">
+        <div className="wrap">
+          <Reveal className="about-copy">
+            <span className="script" style={{ fontSize: '1.5rem' }}>Nourishing lives. Naturally.</span>
+            <p>
+              Farm raised, honest food — produced through ethical farming, natural feed and
+              structured quality systems across our own and partner farms.
+            </p>
+            <div className="chips" style={{ justifyContent: 'center' }}>
+              {BRAND_VALUES.map((v) => <span key={v} className="pill">{v}</span>)}
+            </div>
+            <p><Link to="/about" className="panel-link">Read our story →</Link></p>
+          </Reveal>
         </div>
       </section>
 

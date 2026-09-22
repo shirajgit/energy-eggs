@@ -231,6 +231,19 @@ section.alt{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
 .rate-card .spec-table td:first-child{width:26%}
 .rate-card .spec-table td:nth-child(n+3){font-weight:600;color:var(--brown)}
 
+/* ---------- Home: breed showcase & paths ---------- */
+.breed-minis{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.breed-mini{display:block;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;text-align:center;padding-bottom:22px;transition:transform .25s,box-shadow .25s}
+.breed-mini:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.breed-mini .bm-img{height:160px;background:radial-gradient(100% 100% at 50% 30%,#fff 0%,var(--cream-2) 100%);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:14px;margin-bottom:16px}
+.breed-mini img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
+.breed-mini h3{font-size:1.15rem;margin-bottom:6px}
+.bm-rate{display:inline-block;font-family:var(--font-head);font-size:.82rem;font-weight:700;color:var(--orange);background:var(--orange-soft);padding:4px 14px;border-radius:20px}
+.path-card{display:flex;flex-direction:column;height:100%}
+.path-card .panel-link{margin-top:auto;padding-top:18px}
+@media(max-width:960px){.breed-minis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.breed-minis{grid-template-columns:1fr}}
+
 /* ---------- Feature link accent / panel link ---------- */
 .feature-more{display:inline-block;margin-top:14px;font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.04em}
 .panel-link{display:inline-block;margin-top:22px;font-size:.88rem;font-weight:700;color:var(--orange);transition:color .2s}
