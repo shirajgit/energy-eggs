@@ -176,6 +176,21 @@ section.alt{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
 .breed-card h3{font-size:1.4rem;margin-bottom:10px}
 .breed-card p{font-size:.94rem;color:var(--brown-soft)}
 
+/* ---------- Rate card (Birds) ---------- */
+.breed-card.has-img{display:flex;gap:24px;align-items:center}
+.breed-img{flex:none;width:150px;height:150px;border-radius:18px;background:radial-gradient(100% 100% at 50% 30%,#fff 0%,var(--cream-2) 100%);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.breed-img img{width:100%;height:100%;object-fit:contain;padding:8px;mix-blend-mode:multiply}
+@media(max-width:560px){.breed-card.has-img{flex-direction:column;text-align:center}.breed-img{width:170px;height:150px}}
+.breed-rate{display:inline-block;margin-left:8px;font-family:var(--font-head);font-size:.85rem;font-weight:700;color:var(--orange);background:var(--orange-soft);padding:4px 12px;border-radius:20px;vertical-align:middle}
+.rate-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.rate-tab{font-family:var(--font-body);font-size:.88rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brown-soft);background:#fff;border:1px solid var(--line);border-radius:40px;padding:11px 26px;cursor:pointer;transition:all .2s}
+.rate-tab:hover{border-color:var(--orange);color:var(--orange)}
+.rate-tab.on{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 10px 24px -10px rgba(238,102,32,.7)}
+.rate-card{max-width:860px;margin:0 auto}
+.rate-table-wrap{overflow-x:auto}
+.rate-card .spec-table td:first-child{width:26%}
+.rate-card .spec-table td:nth-child(n+3){font-weight:600;color:var(--brown)}
+
 /* ---------- Chips ---------- */
 .chip-row{margin-top:44px;text-align:center}
 .chip-row h4{font-family:var(--font-head);font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;color:var(--brown);margin-bottom:16px}
