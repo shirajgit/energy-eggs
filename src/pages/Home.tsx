@@ -21,6 +21,27 @@ const PATHS: [tag: string, title: string, text: string, cta: string, to: string]
 
 const BRAND_VALUES = ['Healthy Birds', 'Natural Feed', 'Ethical Farming', 'Better Taste & Nutrition', 'Farm Raised', 'Honest Food']
 
+const STATS_BAND: [n: string, label: string][] = [
+  ['4', 'Desi Breeds'],
+  ['2', 'Production Models'],
+  ['6', 'Ecosystem Pillars'],
+  ['100%', 'B2B Focused'],
+]
+
+const BIRD_RATE_ROWS: [label: string, value: string][] = [
+  ['Sonali', '₹500 /kg'],
+  ['Aseel', '₹700 /kg'],
+  ['Kadaknath', '₹750 /kg'],
+  ['Fiyoumi', '₹1,500 /kg'],
+]
+
+const EGG_RATE_ROWS: [label: string, value: string][] = [
+  ['A-Grade', '₹11.25 – ₹12.00'],
+  ['A + B Grade', '₹11.00 – ₹11.75'],
+  ['B Grade', '₹10.75 – ₹11.25'],
+  ['Processing add-ons', '₹0 – ₹1 /egg'],
+]
+
 const WHAT_WE_DO = [
   {
     to: '/birds',
@@ -181,10 +202,16 @@ export default function Home() {
                   </div>
                   <h3>{f.title}</h3>
                   <p>{f.text}</p>
+                  <span className="feature-more">Explore →</span>
                 </Link>
               </Reveal>
             ))}
           </div>
+          <Reveal className="stats-band">
+            {STATS_BAND.map(([n, label]) => (
+              <div key={label}><span className="n">{n}</span><small>{label}</small></div>
+            ))}
+          </Reveal>
         </div>
       </section>
 
@@ -196,14 +223,12 @@ export default function Home() {
             <h2>From farm to B2B market</h2>
             <p>Energy Eggs is building an interconnected poultry ecosystem.</p>
           </Reveal>
-          <div className="flow">
+          <div className="eco-grid">
             {ECOSYSTEM.map(([title, text], i) => (
-              <Reveal key={title} className="flow-step">
-                <div className="flow-card">
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </div>
-                {i < ECOSYSTEM.length - 1 && <div className="flow-arrow" aria-hidden="true">↓</div>}
+              <Reveal key={title} className="eco-card">
+                <span className="eco-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
               </Reveal>
             ))}
           </div>
@@ -288,14 +313,33 @@ export default function Home() {
             <span className="eyebrow">Transparent Pricing</span>
             <h2>Published rate cards. No guesswork.</h2>
             <p>
-              Live bird rates by breed and age, and per-egg ex-farm prices tiered by monthly
-              commitment — from ₹10.75 to ₹12.00 per egg, with processing add-ons from ₹0.00 to
-              ₹1.00. Commit a monthly volume and unlock preferential slabs with priority supply.
+              Every price is published — bird rates by breed and age, egg prices tiered by monthly
+              commitment. Commit a volume and unlock preferential slabs with priority supply.
             </p>
           </Reveal>
-          <div className="hero-cta" style={{ justifyContent: 'center' }}>
-            <Link to="/birds" className="btn ghost">Bird Rate Card</Link>
-            <Link to="/eggs" className="btn ghost">Egg Rate Card</Link>
+          <div className="cards-2">
+            <Reveal className="panel rate-mini">
+              <h3>Live Bird Rates</h3>
+              <ul className="rate-rows">
+                {BIRD_RATE_ROWS.map(([label, value]) => (
+                  <li key={label}><span>{label}</span><b>{value}</b></li>
+                ))}
+              </ul>
+              <p className="rate-note-sm">Per-bird rates published by age — day-old chicks to 20+ weeks. Minimum order 10 birds.</p>
+              <Link to="/birds" className="panel-link">View bird rate card →</Link>
+            </Reveal>
+            <Reveal className="panel rate-mini">
+              <h3>Ex-Farm Egg Prices</h3>
+              <ul className="rate-rows">
+                {EGG_RATE_ROWS.map(([label, value]) => (
+                  <li key={label}><span>{label}</span><b>{value}</b></li>
+                ))}
+              </ul>
+              <p className="rate-note-sm">Tiered by monthly commitment — from 5,000 to 100,000+ eggs per month.</p>
+              <Link to="/eggs" className="panel-link">View egg rate card →</Link>
+            </Reveal>
+          </div>
+          <div className="hero-cta" style={{ justifyContent: 'center', marginTop: 36 }}>
             <Link to="/b2b-supply#volume-commitment" className="btn">Volume Commitment Program</Link>
           </div>
         </div>

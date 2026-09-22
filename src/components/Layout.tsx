@@ -140,6 +140,13 @@ export default function Layout() {
       {/* FOOTER */}
       <footer>
         <div className="wrap">
+          <div className="foot-top">
+            <div>
+              <span className="script foot-tagline">Nourishing lives. Naturally.</span>
+              <p className="foot-tagsub">The B2B Desi Poultry Ecosystem</p>
+            </div>
+            <Link to="/contact" className="btn">Get B2B Pricing</Link>
+          </div>
           <div className="foot-grid">
             <div>
               <Logo light />
@@ -161,18 +168,26 @@ export default function Layout() {
               <Link to="/contract-farming">Contract Farming</Link>
               <Link to="/b2b-supply">B2B Supply</Link>
               <Link to="/about">About Us</Link>
+              <Link to="/contact">Contact Us</Link>
             </div>
             <div>
               <h4>Get in Touch</h4>
               <a href="tel:+919999999999">+91 99999 99999</a>
               <a href="mailto:hello@energyeggs.in">hello@energyeggs.in</a>
-              <a href="https://energyeggs.vercel.app">www.energyeggs.in</a>
               <Link to="/contact">B2B Enquiry</Link>
             </div>
           </div>
           <div className="foot-bottom">
-            <span>© 2026 Energy Eggs®. The B2B Desi Poultry Ecosystem.</span>
-            <span>Sonali · Kadaknath · Aseel</span>
+            <span>© 2026 Energy Eggs® Pvt Ltd. The B2B Desi Poultry Ecosystem.</span>
+            <span>Sonali · Aseel · Kadaknath · Fiyoumi</span>
+            <button
+              type="button"
+              className="to-top"
+              aria-label="Back to top"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              ↑
+            </button>
           </div>
         </div>
       </footer>
