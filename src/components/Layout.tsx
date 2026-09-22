@@ -10,6 +10,41 @@ const SERVICES = [
   ['/farm-development', 'Farm Development'],
 ]
 
+const SITE_URL = 'https://www.energyeggs.in'
+
+const ROUTE_META: Record<string, [title: string, description: string]> = {
+  '/': ['Energy Eggs — The B2B Desi Poultry Ecosystem', 'Sonali, Aseel, Kadaknath and Fiyoumi birds and eggs with published rate cards, poultry equipment, feed, farm development and contract farming partnerships.'],
+  '/birds': ['Desi Birds & Country Chicken Rate Card | Energy Eggs', 'Live bird rates by age for Sonali, Aseel and Kadaknath — day-old chicks to 20+ weeks, male and female. Sonali ₹500/kg, Aseel ₹700/kg, Kadaknath ₹750/kg, Fiyoumi ₹1,500/kg. Minimum order 10 birds.'],
+  '/eggs': ['Desi Egg Rate Card — Ex-Farm Prices | Energy Eggs', 'Ex-farm egg prices from ₹10.75 to ₹12.00 per egg, tiered by monthly commitment. Washing, grading and packing add-ons, custom packing and private label for bulk B2B orders.'],
+  '/equipment': ['Poultry Farm Equipment | Energy Eggs', 'Poultry equipment for desi poultry farms — nipple drinking systems, brooding, feeders, drinkers and husk supply for farm setup and expansion.'],
+  '/feed': ['Poultry Feed | Energy Eggs', 'Poultry feed programmes for every growth stage — from pre-starter to layer and finisher — supporting consistent desi bird performance.'],
+  '/farm-development': ['Poultry Farm Development & Design | Energy Eggs', 'End-to-end desi poultry farm development — farm design, shed construction and pasture planning, from land to farm-ready.'],
+  '/contract-farming': ['Contract Farming — Pasture-Raised & Deep Litter Models | Energy Eggs', 'Structured Sonali contract farming with fixed-price egg procurement, 15-day payments, flock buyback and full technical support. Pasture-raised and deep-litter models.'],
+  '/b2b-supply': ['B2B Poultry Supply & Volume Commitment | Energy Eggs', 'Structured B2B procurement for restaurants, hotels, QSRs, retailers and distributors — spot orders, scheduled supply and volume commitment programmes with priority supply.'],
+  '/about': ['About Energy Eggs — The B2B Desi Poultry Ecosystem', 'Energy Eggs connects desi poultry farmers and food businesses through structured production models, published pricing and dependable B2B supply.'],
+  '/contact': ['Contact — B2B Enquiry | Energy Eggs', 'Tell us your requirement — birds, eggs, equipment, farm development or contract farming — and our B2B team will respond with a structured commercial proposal.'],
+}
+
+function SeoMeta() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    const [title, description] = ROUTE_META[pathname] ?? ROUTE_META['/']
+    const url = `${SITE_URL}${pathname === '/' ? '/' : pathname}`
+    document.title = title
+    const set = (selector: string, attr: string, value: string) => {
+      document.querySelector(selector)?.setAttribute(attr, value)
+    }
+    set('meta[name="description"]', 'content', description)
+    set('link[rel="canonical"]', 'href', url)
+    set('meta[property="og:title"]', 'content', title)
+    set('meta[property="og:description"]', 'content', description)
+    set('meta[property="og:url"]', 'content', url)
+    set('meta[name="twitter:title"]', 'content', title)
+    set('meta[name="twitter:description"]', 'content', description)
+  }, [pathname])
+  return null
+}
+
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
@@ -57,12 +92,13 @@ export default function Layout() {
 
   return (
     <>
+      <SeoMeta />
       <ScrollToTop />
 
       {/* NAV */}
       <header className={scrolled ? 'scrolled' : ''}>
         <div className="wrap">
-          <nav>
+          <nav aria-label="Main navigation">
             <Logo />
             <div className={`navlinks ${menuOpen ? 'open' : ''}`}>
               <NavLink to="/" end onClick={closeAll}>Home</NavLink>
