@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start *)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(npm run *)",
+      "Bash(npx vite *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Add Energy Eggs React site: brand theme, rate card, animated sprinting hen hero *)"
+    ]
+  }
+}
