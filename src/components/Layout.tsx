@@ -28,6 +28,7 @@ function ScrollToTop() {
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const dropRef = useRef<HTMLDivElement>(null)
   const { pathname } = useLocation()
   const onServicePage = SERVICES.some(([to]) => to === pathname)
@@ -47,12 +48,19 @@ export default function Layout() {
     return () => document.removeEventListener('click', onClickOutside)
   }, [])
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <>
       <ScrollToTop />
 
       {/* NAV */}
-      <header>
+      <header className={scrolled ? 'scrolled' : ''}>
         <div className="wrap">
           <nav>
             <Logo />
