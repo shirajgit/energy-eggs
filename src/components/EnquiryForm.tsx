@@ -7,6 +7,8 @@ const INTERESTS = [
 
 export default function EnquiryForm() {
   const [interests, setInterests] = useState<string[]>([])
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
   const [breed, setBreed] = useState('Sonali')
   const [quantity, setQuantity] = useState('Weekly')
   const [location, setLocation] = useState('')
@@ -18,6 +20,8 @@ export default function EnquiryForm() {
 
   const handleSubmit = () => {
     const body = [
+      `Name: ${name || '—'}`,
+      `Phone: ${phone || '—'}`,
       `Interested in: ${interests.join(', ') || '—'}`,
       `Breed: ${breed}`,
       `Quantity: ${quantity}`,
@@ -50,11 +54,21 @@ export default function EnquiryForm() {
         <legend>My requirement</legend>
         <div className="field-grid">
           <label>
+            Your Name
+            <input type="text" value={name} placeholder="Full name" onChange={(e) => setName(e.target.value)} />
+          </label>
+          <label>
+            Phone
+            <input type="tel" value={phone} placeholder="+91 …" onChange={(e) => setPhone(e.target.value)} />
+          </label>
+          <label>
             Breed
             <select value={breed} onChange={(e) => setBreed(e.target.value)}>
               <option>Sonali</option>
-              <option>Kadaknath</option>
               <option>Aseel</option>
+              <option>Kadaknath</option>
+              <option>Fiyoumi</option>
+              <option>Quail</option>
               <option>Other</option>
             </select>
           </label>
@@ -64,6 +78,7 @@ export default function EnquiryForm() {
               <option>Daily</option>
               <option>Weekly</option>
               <option>Monthly</option>
+              <option>Contract</option>
             </select>
           </label>
           <label>

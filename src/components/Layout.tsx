@@ -164,6 +164,7 @@ export default function Layout() {
             </div>
             <div>
               <h4>Get in Touch</h4>
+              <a href="tel:+919999999999">+91 99999 99999</a>
               <a href="mailto:hello@energyeggs.in">hello@energyeggs.in</a>
               <a href="https://energyeggs.vercel.app">www.energyeggs.in</a>
               <Link to="/contact">B2B Enquiry</Link>
