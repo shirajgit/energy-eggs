@@ -187,9 +187,64 @@ section.alt{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
 .rate-tab:hover{border-color:var(--orange);color:var(--orange)}
 .rate-tab.on{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 10px 24px -10px rgba(238,102,32,.7)}
 .rate-card{max-width:860px;margin:0 auto}
+.rate-card-sm{max-width:620px;margin-top:36px}
+
+/* ---------- Egg category cards ---------- */
+.egg-card{position:relative;padding-top:44px}
+.egg-badge{position:absolute;top:-26px;left:30px;width:56px;height:56px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:0 12px 24px -14px rgba(65,64,66,.5);display:flex;align-items:center;justify-content:center}
+.egg-mark{width:26px;height:auto;display:block}
+
+/* ---------- Egg pricing tiers ---------- */
+.tier-list{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.tier{display:flex;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.tier:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.tier-range{flex:0 0 250px;background:var(--cream-2);border-right:1px solid var(--line);padding:20px 28px;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.tier-range small{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--clay)}
+.tier-range strong{font-family:var(--font-head);font-size:1.35rem;font-weight:800;color:var(--brown);letter-spacing:-.01em}
+.tier-range span{font-size:.74rem;color:var(--brown-soft)}
+.tier-prices{flex:1;display:grid;grid-template-columns:repeat(3,1fr)}
+.tp{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:18px 10px}
+.tp+.tp{border-left:1px dashed var(--line)}
+.tp small{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--brown-soft)}
+.tp b{font-family:var(--font-head);font-size:1.35rem;font-weight:800;color:var(--orange)}
+.tier.custom{background:linear-gradient(120deg,var(--orange),var(--orange-light));border-color:transparent;box-shadow:0 18px 40px -20px rgba(238,102,32,.65)}
+.tier.custom .tier-range{background:rgba(255,255,255,.12);border-right-color:rgba(255,255,255,.25)}
+.tier.custom .tier-range small{color:#ffe1cd}
+.tier.custom .tier-range strong{color:#fff}
+.tier.custom .tier-range span{color:#ffe1cd}
+.tier.custom .tp small{color:#ffe1cd}
+.tier.custom .tp b{color:#fff}
+.tier.custom .tp+.tp{border-left-color:rgba(255,255,255,.3)}
+
+/* ---------- Add-on charge steps ---------- */
+.sub-head{text-align:center;margin:72px auto 32px;max-width:560px}
+.sub-head h3{font-size:clamp(1.3rem,2.6vw,1.7rem);margin-top:10px}
+.addon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:920px;margin:0 auto}
+.addon{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 26px 26px;text-align:center;transition:transform .25s,box-shadow .25s}
+.addon:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.addon-step{position:absolute;top:16px;left:20px;font-family:var(--font-head);font-style:italic;font-weight:700;font-size:.85rem;color:var(--clay)}
+.addon h3{font-size:1.02rem;margin-bottom:10px}
+.addon-price{font-family:var(--font-head);font-size:2.1rem;font-weight:800;color:var(--orange);line-height:1;margin-bottom:10px}
+.addon-price small{font-size:.85rem;font-weight:600;color:var(--brown-soft);margin-left:4px}
+.addon p{font-size:.85rem;color:var(--brown-soft)}
 .rate-table-wrap{overflow-x:auto}
 .rate-card .spec-table td:first-child{width:26%}
 .rate-card .spec-table td:nth-child(n+3){font-weight:600;color:var(--brown)}
+
+/* ---------- Feature link accent / panel link ---------- */
+.feature-more{display:inline-block;margin-top:14px;font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.04em}
+.panel-link{display:inline-block;margin-top:22px;font-size:.88rem;font-weight:700;color:var(--orange);transition:color .2s}
+.panel-link:hover{color:var(--brown)}
+
+/* ---------- FAQ accordion ---------- */
+.faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:box-shadow .2s}
+.faq details[open]{box-shadow:0 14px 30px -22px rgba(65,64,66,.45)}
+.faq summary{cursor:pointer;padding:18px 24px;font-family:var(--font-head);font-weight:600;font-size:.98rem;color:var(--brown);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--orange);font-size:1.4rem;font-weight:700;line-height:1;flex:none;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 24px 20px;font-size:.92rem;color:var(--brown-soft)}
 
 /* ---------- Chips ---------- */
 .chip-row{margin-top:44px;text-align:center}
@@ -323,6 +378,12 @@ footer p{font-size:.92rem;max-width:34ch}
   .navlinks.open .drop-btn{font-size:.95rem;width:100%;justify-content:space-between}
   .navlinks.open .dropdown{position:static;transform:none;box-shadow:none;border:0;border-left:3px solid var(--orange-soft);border-radius:0;background:transparent;min-width:0;padding:8px 0 0 16px;margin-top:8px}
   .navlinks.open .dropdown::before{display:none}
+}
+@media(max-width:760px){
+  .tier{flex-direction:column}
+  .tier-range{flex:none;border-right:0;border-bottom:1px solid var(--line);padding:16px 22px}
+  .tier.custom .tier-range{border-bottom-color:rgba(255,255,255,.25)}
+  .addon-grid{grid-template-columns:1fr}
 }
 @media(max-width:960px){
   .hero-grid,.split{grid-template-columns:1fr}
