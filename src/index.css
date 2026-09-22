@@ -73,6 +73,7 @@ nav{display:flex;align-items:center;justify-content:space-between;height:74px;ga
 .hero-stats .n{font-family:var(--font-head);font-size:1.7rem;color:var(--brown);font-weight:700}
 .hero-stats small{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-soft);font-weight:600}
 .hero-art{position:relative;display:flex;justify-content:center;align-items:center}
+.about-stats{justify-content:center;margin-top:52px;gap:56px;text-align:center}
 
 /* ---------- Sprinting Hen avatar ---------- */
 .hen-scene{width:100%;max-width:500px;position:relative;display:flex;align-items:center;justify-content:center}
@@ -147,6 +148,7 @@ section.alt{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
 /* ---------- Feature / info card grids ---------- */
 .features{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .features-4{grid-template-columns:repeat(4,1fr)}
+.features-3{grid-template-columns:repeat(3,1fr)}
 .features-5{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 .feature{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px 26px;transition:transform .25s,box-shadow .25s}
 .feature:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
@@ -312,7 +314,7 @@ footer p{font-size:.92rem;max-width:34ch}
   .model-grid{grid-template-columns:1fr}
   .spec-table td:first-child{width:38%}
   .spec-table th,.spec-table td{padding:12px 16px;font-size:.86rem}
-  .features,.features-4{grid-template-columns:repeat(2,1fr)}
+  .features,.features-4,.features-3{grid-template-columns:repeat(2,1fr)}
   .cards-3{grid-template-columns:1fr}
   .cards-2{grid-template-columns:1fr}
   .steps{grid-template-columns:repeat(2,1fr)}
@@ -323,7 +325,7 @@ footer p{font-size:.92rem;max-width:34ch}
   .check-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:560px){
-  .features,.features-4,.features-5,.vgrid,.vgrid-3,.steps,.steps-5,.foot-grid,.check-grid,.field-grid{grid-template-columns:1fr}
+  .features,.features-3,.features-4,.features-5,.vgrid,.vgrid-3,.steps,.steps-5,.foot-grid,.check-grid,.field-grid{grid-template-columns:1fr}
   .story-list.cols-2{grid-template-columns:1fr}
   section{padding:64px 0}
   .mini-cta{padding:26px 22px}
