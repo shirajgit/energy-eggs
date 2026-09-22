@@ -198,6 +198,7 @@ section.alt{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
 /* ---------- Panels (contract farming) ---------- */
 .panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:36px 32px;box-shadow:0 12px 30px -22px rgba(65,64,66,.4)}
 .panel h3{font-size:1.2rem;margin-bottom:18px;color:var(--orange)}
+.panel.narrow{max-width:860px;margin:0 auto}
 
 /* ---------- Contract farming model cards ---------- */
 .model{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
