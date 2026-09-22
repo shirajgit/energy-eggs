@@ -105,7 +105,7 @@ export default function Home() {
               <div className="badges">
                 <span className="pill">Birds</span>
                 <span className="pill">Eggs</span>
-                <span className="pill">Farms</span>
+                <span className="pill">Feed</span>
                 <span className="pill">Equipment</span>
                 <span className="pill">Partnerships</span>
               </div>
