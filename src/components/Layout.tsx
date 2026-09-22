@@ -10,7 +10,7 @@ const SERVICES = [
   ['/farm-development', 'Farm Development'],
 ]
 
-const SITE_URL = 'https://www.energyeggs.in'
+const SITE_URL = 'https://energyeggs.vercel.app'
 
 const ROUTE_META: Record<string, [title: string, description: string]> = {
   '/': ['Energy Eggs — The B2B Desi Poultry Ecosystem', 'Sonali, Aseel, Kadaknath and Fiyoumi birds and eggs with published rate cards, poultry equipment, feed, farm development and contract farming partnerships.'],
@@ -165,7 +165,7 @@ export default function Layout() {
             <div>
               <h4>Get in Touch</h4>
               <a href="mailto:hello@energyeggs.in">hello@energyeggs.in</a>
-              <a href="https://www.energyeggs.in">www.energyeggs.in</a>
+              <a href="https://energyeggs.vercel.app">www.energyeggs.in</a>
               <Link to="/contact">B2B Enquiry</Link>
             </div>
           </div>

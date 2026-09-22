@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.energyeggs.in/</loc><lastmod>2026-09-22</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.energyeggs.in/birds</loc><lastmod>2026-09-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.energyeggs.in/eggs</loc><lastmod>2026-09-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.energyeggs.in/b2b-supply</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.energyeggs.in/contract-farming</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.energyeggs.in/equipment</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.energyeggs.in/feed</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.energyeggs.in/farm-development</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.energyeggs.in/about</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.energyeggs.in/contact</loc><lastmod>2026-09-22</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://energyeggs.vercel.app/</loc><lastmod>2026-09-22</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://energyeggs.vercel.app/birds</loc><lastmod>2026-09-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://energyeggs.vercel.app/eggs</loc><lastmod>2026-09-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://energyeggs.vercel.app/b2b-supply</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://energyeggs.vercel.app/contract-farming</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://energyeggs.vercel.app/equipment</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://energyeggs.vercel.app/feed</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://energyeggs.vercel.app/farm-development</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://energyeggs.vercel.app/about</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://energyeggs.vercel.app/contact</loc><lastmod>2026-09-22</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
 </urlset>
