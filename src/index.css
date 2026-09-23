@@ -523,7 +523,7 @@ footer p{font-size:.92rem;max-width:34ch}
   .cards-3 .egg-card{margin-top:12px}
 }
 @media(max-width:560px){
-  .features,.features-3,.features-4,.vgrid,.vgrid-3,.steps,.steps-5,.foot-grid,.check-grid,.field-grid{grid-template-columns:1fr}
+  .features,.features-3,.features-4,.vgrid,.vgrid-3,.steps,.steps-5,.check-grid,.field-grid{grid-template-columns:1fr}
   .features-5{grid-template-columns:repeat(2,1fr);gap:14px}
   .features-5>.feature:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 7px);margin:0 auto}
   .features-5 .feature-link>a{padding:14px 12px}
@@ -568,8 +568,15 @@ footer p{font-size:.92rem;max-width:34ch}
   .faq details p{padding:0 18px 16px}
   .rate-tab{padding:10px 20px;font-size:.8rem}
   .navlinks.open a{padding:11px 15px}
-  footer{padding:48px 0 24px}
-  .foot-bottom{justify-content:center;text-align:center}
+  footer{padding:32px 0 20px;border-radius:24px 24px 0 0}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:30px 18px;padding:30px 0 28px}
+  .foot-grid>div:first-child,.foot-grid>div:last-child{grid-column:1/-1;text-align:center}
+  .foot-grid>div:first-child p{margin:0 auto}
+  .foot-grid>div:first-child h4::after,.foot-grid>div:last-child h4::after{left:50%;transform:translateX(-50%)}
+  .foot-grid>div:last-child a{margin-left:auto;margin-right:auto}
+  footer h4{margin-bottom:14px}
+  footer a{font-size:.88rem;margin-bottom:8px}
+  .foot-bottom{flex-direction:column;justify-content:center;text-align:center;gap:10px;padding-top:20px}
   nav{height:62px}
   .logo img{height:42px}
   .navlinks.open{top:62px;max-height:calc(100dvh - 62px)}
@@ -587,7 +594,7 @@ footer p{font-size:.92rem;max-width:34ch}
   .sec-head h2{font-size:clamp(1.6rem,7vw,1.9rem)}
   .split h2{font-size:clamp(1.6rem,7vw,1.9rem)}
   .foot-tagline{font-size:1.4rem}
-  .foot-top{padding:36px 0 26px}
+  .foot-top{flex-direction:column;align-items:center;text-align:center;gap:16px;padding:0 0 24px}
   .foot-top .btn{width:100%;text-align:center}
   .btn-lg{padding:14px 28px;font-size:.95rem;width:100%;text-align:center}
 }
