@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom'
 
 const CHANNELS = [
   {
-    href: 'tel:+919999999999',
+    href: 'tel:+9178 78 78 7226',
     label: 'Call us',
-    value: '+91 99999 99999',
+    value: '+91 78 78 78 7226',
     badge: 'Fastest Response',
     icon: <path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />,
   },
   {
-    href: 'https://wa.me/919999999999',
+    href: 'https://wa.me/917878787226',
     label: 'WhatsApp',
-    value: '+91 99999 99999',
+    value: '+91 78 78 78 7226',
     icon: (
       <>
         <path d="M12 3a9 9 0 0 0-7.6 13.8L3 21l4.4-1.3A9 9 0 1 0 12 3z" />

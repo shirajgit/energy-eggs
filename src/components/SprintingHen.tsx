@@ -1,6 +1,6 @@
 export default function SprintingHen() {
   return (
-    <div className="hen-scene" aria-hidden="true">
+    <div className="hen-scene" aria-hidden="true" style={{ scale:'0.8' }}>
       <svg className="hen-svg" viewBox="0 0 280 240" fill="none">
         {/* speed lines */}
         <g stroke="#A3755F" strokeWidth={8} strokeLinecap="round">

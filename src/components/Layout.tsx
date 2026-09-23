@@ -90,6 +90,18 @@ export default function Layout() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
+  useEffect(() => {
+    setMenuOpen(false)
+    setServicesOpen(false)
+  }, [pathname])
+
   return (
     <>
       <SeoMeta />
@@ -124,10 +136,16 @@ export default function Layout() {
               <NavLink to="/b2b-supply" onClick={closeAll}>B2B</NavLink>
               <NavLink to="/about" onClick={closeAll}>About Us</NavLink>
               <NavLink to="/contact" onClick={closeAll}>Contact</NavLink>
+              <Link to="/contact" className="btn menu-cta" onClick={closeAll}>Get B2B Pricing</Link>
             </div>
             <Link to="/contact" className="btn nav-cta">Get B2B Pricing</Link>
-            <button className="menu-toggle" aria-label="Menu" onClick={() => setMenuOpen((o) => !o)}>
-              ☰
+            <button
+              className="menu-toggle"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((o) => !o)}
+            >
+              {menuOpen ? '✕' : '☰'}
             </button>
           </nav>
         </div>
@@ -172,7 +190,7 @@ export default function Layout() {
             </div>
             <div>
               <h4>Get in Touch</h4>
-              <a href="tel:+919999999999">+91 99999 99999</a>
+              <a href="tel:+917878787226">+91 78 78 78 7226</a>
               <a href="mailto:hello@energyeggs.in">hello@energyeggs.in</a>
               <Link to="/contact">B2B Enquiry</Link>
             </div>

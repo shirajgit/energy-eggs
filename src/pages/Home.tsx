@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import Reveal from '../components/Reveal'
+import { motion, MotionConfig } from 'framer-motion'
+import { CountUp, EASE, fadeUp, MItem, MReveal, MStagger, pop } from '../components/Motion'
 import SprintingHen from '../components/SprintingHen'
 import sonaliImg from '../assets/sonali.png'
 import aseelImg from '../assets/aseel.png'
@@ -115,48 +116,62 @@ const WHY = [
   ['06', 'End-to-End Ecosystem', 'From farm development to B2B market.'],
 ]
 
+const heroStagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+}
+
 export default function Home() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       {/* HERO */}
       <section className="hero">
         <div className="wrap">
           <div className="hero-grid">
-            <Reveal className="in">
-              <div className="badges">
+            <motion.div initial="hidden" animate="show" variants={heroStagger}>
+              <motion.div className="badges" variants={fadeUp}>
                 <span className="pill">Birds</span>
                 <span className="pill">Eggs</span>
                 <span className="pill">Feed</span>
                 <span className="pill">Equipment</span>
                 <span className="pill">Partnerships</span>
-              </div>
-              <span className="script" style={{ fontSize: '1.3rem' }}>
+              </motion.div>
+              <motion.span
+                className="script"
+                style={{ fontSize: '1.3rem', display: 'inline-block' }}
+                variants={fadeUp}
+              >
                 The B2B Desi Poultry Ecosystem
-              </span>
-              <h1>
+              </motion.span>
+              <motion.h1 variants={fadeUp}>
                 Desi Poultry.
                 <br />
                 Built for <span>Business.</span>
-              </h1>
-              <p className="tag">
+              </motion.h1>
+              <motion.p className="tag" variants={fadeUp}>
                 Building a stronger desi poultry supply chain — from farm development and farmer
                 partnerships to reliable B2B supply.
-              </p>
-              <div className="hero-cta">
+              </motion.p>
+              <motion.div className="hero-cta" variants={fadeUp}>
                 <Link to="/contact" className="btn">Get B2B Pricing</Link>
                 <Link to="/contract-farming" className="btn ghost">Become a Farmer Partner</Link>
-              </div>
-              <div className="hero-stats">
+              </motion.div>
+              <motion.div className="hero-stats" variants={fadeUp}>
                 <div><span className="n">4 Breeds</span><small>Sonali · Aseel · Kadaknath · Fiyoumi</small></div>
                 <div><span className="n">2 Models</span><small>Deep Litter · Pasture-Raised</small></div>
                 <div><span className="n">End-to-End</span><small>Farm to B2B Market</small></div>
-              </div>
-            </Reveal>
-            <Reveal className="in hero-art">
+              </motion.div>
+            </motion.div>
+            <motion.div
+              className="hero-art"
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
+            >
               <SprintingHen />
               <div className="float-badge fb-1"><span className="dot">⚡</span> Desi Poultry Ecosystem</div>
               <div className="float-badge fb-2"><span className="dot">🤝</span> Farmer Partnerships</div>
-            </Reveal>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -180,7 +195,7 @@ export default function Home() {
       {/* WHAT WE DO */}
       <section>
         <div className="wrap">
-          <Reveal className="sec-head">
+          <MReveal className="sec-head">
             <span className="eyebrow">What We Do</span>
             <h2>Desi poultry. Built for business.</h2>
             <p>
@@ -190,10 +205,10 @@ export default function Home() {
               poultry farms with pasture planning, and work with farmers through structured contract
               farming models.
             </p>
-          </Reveal>
-          <div className="features features-5">
+          </MReveal>
+          <MStagger className="features features-5">
             {WHAT_WE_DO.map((f) => (
-              <Reveal key={f.title} className="feature feature-link">
+              <MItem key={f.title} className="feature feature-link">
                 <Link to={f.to}>
                   <div className="ic">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -204,121 +219,124 @@ export default function Home() {
                   <p>{f.text}</p>
                   <span className="feature-more">Explore →</span>
                 </Link>
-              </Reveal>
+              </MItem>
             ))}
-          </div>
-          <Reveal className="stats-band">
+          </MStagger>
+          <MStagger className="stats-band" gap={0.1} amount={0.3}>
             {STATS_BAND.map(([n, label]) => (
-              <div key={label}><span className="n">{n}</span><small>{label}</small></div>
+              <MItem key={label} variants={pop}>
+                <CountUp value={n} />
+                <small>{label}</small>
+              </MItem>
             ))}
-          </Reveal>
+          </MStagger>
         </div>
       </section>
 
       {/* ECOSYSTEM */}
       <section className="alt">
         <div className="wrap">
-          <Reveal className="sec-head">
+          <MReveal className="sec-head">
             <span className="eyebrow">Our Ecosystem</span>
             <h2>From farm to B2B market</h2>
             <p>Energy Eggs is building an interconnected poultry ecosystem.</p>
-          </Reveal>
-          <div className="eco-grid">
+          </MReveal>
+          <MStagger className="eco-grid">
             {ECOSYSTEM.map(([title, text], i) => (
-              <Reveal key={title} className="eco-card">
+              <MItem key={title} className="eco-card">
                 <span className="eco-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                 <h3>{title}</h3>
                 <p>{text}</p>
-              </Reveal>
+              </MItem>
             ))}
-          </div>
+          </MStagger>
         </div>
       </section>
 
       {/* BREED SHOWCASE */}
       <section>
         <div className="wrap">
-          <Reveal className="sec-head">
+          <MReveal className="sec-head">
             <span className="eyebrow">Our Breeds</span>
             <h2>Four desi breeds. <span className="script">One supply partner.</span></h2>
             <p>Traditionally raised, naturally stronger — with transparent, published per-kg rates.</p>
-          </Reveal>
-          <div className="breed-minis">
+          </MReveal>
+          <MStagger className="breed-minis">
             {BREEDS.map(([name, rate, img]) => (
-              <Reveal key={name} className="in">
+              <MItem key={name} variants={pop}>
                 <Link to="/birds" className="breed-mini">
                   <div className="bm-img"><img src={img} alt={`${name} bird`} loading="lazy" /></div>
                   <h3>{name}</h3>
                   <span className="bm-rate">{rate}</span>
                 </Link>
-              </Reveal>
+              </MItem>
             ))}
-          </div>
-          <Reveal className="chip-row">
+          </MStagger>
+          <MReveal className="chip-row" delay={0.15}>
             <div className="chips">
               <span className="pill">Live bird rates by age — day-old to 20+ weeks</span>
               <span className="pill">Minimum order 10 birds</span>
               <span className="pill">Quail also available</span>
             </div>
-          </Reveal>
+          </MReveal>
         </div>
       </section>
 
       {/* CHOOSE YOUR PATH */}
       <section className="alt">
         <div className="wrap">
-          <Reveal className="sec-head">
+          <MReveal className="sec-head">
             <span className="eyebrow">Where Do You Fit?</span>
             <h2>Three ways into the ecosystem</h2>
             <p>Whether you buy poultry, farm it, or want to start — there's a structured path for you.</p>
-          </Reveal>
-          <div className="cards-3">
+          </MReveal>
+          <MStagger className="cards-3" gap={0.12}>
             {PATHS.map(([tag, title, text, cta, to]) => (
-              <Reveal key={title} className="in">
+              <MItem key={title}>
                 <Link to={to} className="breed-card path-card">
                   <span className="eyebrow">{tag}</span>
                   <h3>{title}</h3>
                   <p>{text}</p>
                   <span className="panel-link">{cta}</span>
                 </Link>
-              </Reveal>
+              </MItem>
             ))}
-          </div>
+          </MStagger>
         </div>
       </section>
 
       {/* WHY ENERGY EGGS */}
       <section className="values">
         <div className="wrap">
-          <Reveal className="sec-head">
+          <MReveal className="sec-head">
             <span className="eyebrow" style={{ color: 'var(--orange-light)' }}>Why Energy Eggs?</span>
             <h2>More than a poultry supplier</h2>
-          </Reveal>
-          <div className="vgrid vgrid-3">
+          </MReveal>
+          <MStagger className="vgrid vgrid-3">
             {WHY.map(([num, title, text]) => (
-              <Reveal key={num} className="value">
+              <MItem key={num} className="value">
                 <div className="num">{num}</div>
                 <h3>{title}</h3>
                 <p>{text}</p>
-              </Reveal>
+              </MItem>
             ))}
-          </div>
+          </MStagger>
         </div>
       </section>
 
       {/* PRICING SNAPSHOT */}
       <section>
         <div className="wrap">
-          <Reveal className="sec-head">
+          <MReveal className="sec-head">
             <span className="eyebrow">Transparent Pricing</span>
             <h2>Published rate cards. No guesswork.</h2>
             <p>
               Every price is published — bird rates by breed and age, egg prices tiered by monthly
               commitment. Commit a volume and unlock preferential slabs with priority supply.
             </p>
-          </Reveal>
-          <div className="cards-2">
-            <Reveal className="panel rate-mini">
+          </MReveal>
+          <MStagger className="cards-2" gap={0.15}>
+            <MItem className="panel rate-mini">
               <h3>Live Bird Rates</h3>
               <ul className="rate-rows">
                 {BIRD_RATE_ROWS.map(([label, value]) => (
@@ -327,8 +345,8 @@ export default function Home() {
               </ul>
               <p className="rate-note-sm">Per-bird rates published by age — day-old chicks to 20+ weeks. Minimum order 10 birds.</p>
               <Link to="/birds" className="panel-link">View bird rate card →</Link>
-            </Reveal>
-            <Reveal className="panel rate-mini">
+            </MItem>
+            <MItem className="panel rate-mini">
               <h3>Ex-Farm Egg Prices</h3>
               <ul className="rate-rows">
                 {EGG_RATE_ROWS.map(([label, value]) => (
@@ -337,8 +355,8 @@ export default function Home() {
               </ul>
               <p className="rate-note-sm">Tiered by monthly commitment — from 5,000 to 100,000+ eggs per month.</p>
               <Link to="/eggs" className="panel-link">View egg rate card →</Link>
-            </Reveal>
-          </div>
+            </MItem>
+          </MStagger>
           <div className="hero-cta" style={{ justifyContent: 'center', marginTop: 36 }}>
             <Link to="/b2b-supply#volume-commitment" className="btn">Volume Commitment Program</Link>
           </div>
@@ -348,7 +366,7 @@ export default function Home() {
       {/* BRAND PROMISE */}
       <section className="alt brand-strip">
         <div className="wrap">
-          <Reveal className="about-copy">
+          <MReveal className="about-copy">
             <span className="script" style={{ fontSize: '1.5rem' }}>Nourishing lives. Naturally.</span>
             <p>
               Farm raised, honest food — produced through ethical farming, natural feed and
@@ -358,14 +376,14 @@ export default function Home() {
               {BRAND_VALUES.map((v) => <span key={v} className="pill">{v}</span>)}
             </div>
             <p><Link to="/about" className="panel-link">Read our story →</Link></p>
-          </Reveal>
+          </MReveal>
         </div>
       </section>
 
       {/* CLOSING CTA */}
       <section className="closing" style={{ paddingTop: 90 }}>
         <div className="wrap">
-          <Reveal className="cta-band">
+          <MReveal className="cta-band">
             <span className="script" style={{ color: '#fff', fontSize: '1.3rem' }}>
               From Farm to Business
             </span>
@@ -375,9 +393,9 @@ export default function Home() {
               <Link to="/contact" className="btn">Get B2B Pricing</Link>
               <Link to="/contract-farming" className="btn ghost light">Become a Farmer Partner</Link>
             </div>
-          </Reveal>
+          </MReveal>
         </div>
       </section>
-    </>
+    </MotionConfig>
   )
 }
