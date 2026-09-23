@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { animate, motion, useInView } from 'framer-motion'
 import type { Variants } from 'framer-motion'
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 
 export const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -48,14 +48,16 @@ export function MItem({ children, className, variants = fadeUp }: {
 }
 
 /** Standalone fade-up reveal on scroll into view. */
-export function MReveal({ children, className, delay = 0 }: {
+export function MReveal({ children, className, delay = 0, style }: {
   children: ReactNode
   className?: string
   delay?: number
+  style?: CSSProperties
 }) {
   return (
     <motion.div
       className={className}
+      style={style}
       initial={{ opacity: 0, y: 26 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}

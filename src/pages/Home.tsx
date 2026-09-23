@@ -153,7 +153,7 @@ export default function Home() {
                 partnerships to reliable B2B supply.
               </motion.p>
               <motion.div className="hero-cta" variants={fadeUp}>
-                <Link to="/contact" className="btn">Get B2B Pricing</Link>
+                <Link to="/rate-card" className="btn">Get B2B Pricing</Link>
                 <Link to="/contract-farming" className="btn ghost">Become a Farmer Partner</Link>
               </motion.div>
               <motion.div className="hero-stats" variants={fadeUp}>
@@ -390,7 +390,7 @@ export default function Home() {
             <h2>Birds. Eggs. Equipment. Farms. Partnerships.</h2>
             <p>Energy Eggs is building a B2B ecosystem for the next generation of desi poultry.</p>
             <div className="hero-cta" style={{ justifyContent: 'center' }}>
-              <Link to="/contact" className="btn">Get B2B Pricing</Link>
+              <Link to="/rate-card" className="btn">Get B2B Pricing</Link>
               <Link to="/contract-farming" className="btn ghost light">Become a Farmer Partner</Link>
             </div>
           </MReveal>

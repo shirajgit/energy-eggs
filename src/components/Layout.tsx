@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import Logo from './Logo'
 
 const SERVICES = [
@@ -21,6 +22,8 @@ const ROUTE_META: Record<string, [title: string, description: string]> = {
   '/farm-development': ['Poultry Farm Development & Design | Energy Eggs', 'End-to-end desi poultry farm development — farm design, shed construction and pasture planning, from land to farm-ready.'],
   '/contract-farming': ['Contract Farming — Pasture-Raised & Deep Litter Models | Energy Eggs', 'Structured Sonali contract farming with fixed-price egg procurement, 15-day payments, flock buyback and full technical support. Pasture-raised and deep-litter models.'],
   '/b2b-supply': ['B2B Poultry Supply & Volume Commitment | Energy Eggs', 'Structured B2B procurement for restaurants, hotels, QSRs, retailers and distributors — spot orders, scheduled supply and volume commitment programmes with priority supply.'],
+  '/shop': ['Shop — Order Desi Birds, Eggs & Equipment | Energy Eggs', 'Order Sonali, Aseel, Kadaknath and Fiyoumi birds, desi eggs and poultry farm equipment at published B2B rates. Pick your product, send an enquiry and get a structured quote.'],
+  '/rate-card': ['Rate Card — Bird & Egg Prices | Energy Eggs', 'The complete published B2B rate card — live bird rates by age for Sonali, Aseel and Kadaknath, and ex-farm egg prices tiered by monthly commitment with processing add-ons.'],
   '/about': ['About Energy Eggs — The B2B Desi Poultry Ecosystem', 'Energy Eggs connects desi poultry farmers and food businesses through structured production models, published pricing and dependable B2B supply.'],
   '/contact': ['Contact — B2B Enquiry | Energy Eggs', 'Tell us your requirement — birds, eggs, equipment, farm development or contract farming — and our B2B team will respond with a structured commercial proposal.'],
 }
@@ -66,6 +69,8 @@ export default function Layout() {
   const [scrolled, setScrolled] = useState(false)
   const dropRef = useRef<HTMLDivElement>(null)
   const { pathname } = useLocation()
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 35, damping: 14, mass: 0.4, restDelta: 0.001 })
   const onServicePage = SERVICES.some(([to]) => to === pathname)
 
   const closeAll = () => {
@@ -109,11 +114,11 @@ export default function Layout() {
 
       {/* NAV */}
       <header className={scrolled ? 'scrolled' : ''}>
+        <motion.div className="scroll-progress" style={{ scaleX: progress }} />
         <div className="wrap">
           <nav aria-label="Main navigation">
             <Logo />
-            <div className={`navlinks ${menuOpen ? 'open' : ''}`}>
-              <NavLink to="/" end onClick={closeAll}>Home</NavLink>
+            <div className={`navlinks ${menuOpen ? 'open' : ''}`}> 
 
               <div className={`has-dropdown ${servicesOpen ? 'open' : ''}`} ref={dropRef}>
                 <button
@@ -133,12 +138,16 @@ export default function Layout() {
               </div>
 
               <NavLink to="/contract-farming" onClick={closeAll}>Contract Farming</NavLink>
-              <NavLink to="/b2b-supply" onClick={closeAll}>B2B</NavLink>
+              <NavLink to="/b2b-supply" onClick={closeAll}>Partnership</NavLink>
               <NavLink to="/about" onClick={closeAll}>About Us</NavLink>
               <NavLink to="/contact" onClick={closeAll}>Contact</NavLink>
-              <Link to="/contact" className="btn menu-cta" onClick={closeAll}>Get B2B Pricing</Link>
+              <Link to="/rate-card" className="btn menu-cta" onClick={closeAll}>Get Ratecard</Link>
+              <Link to="/shop" className="btn ghost menu-cta" onClick={closeAll}>Shop</Link>
             </div>
-            <Link to="/contact" className="btn nav-cta">Get B2B Pricing</Link>
+            <div className="nav-ctas">
+              <Link to="/rate-card" className="btn nav-cta">Get Rate Card</Link>
+              <Link to="/shop" className="btn nav-cta ghost">Shop</Link>
+            </div>
             <button
               className="menu-toggle"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -147,7 +156,7 @@ export default function Layout() {
             >
               {menuOpen ? '✕' : '☰'}
             </button>
-          </nav>
+          </nav> 
         </div>
       </header>
 
@@ -163,7 +172,7 @@ export default function Layout() {
               <span className="script foot-tagline">Nourishing lives. Naturally.</span>
               <p className="foot-tagsub">The B2B Desi Poultry Ecosystem</p>
             </div>
-            <Link to="/contact" className="btn">Get B2B Pricing</Link>
+            <Link to="/rate-card" className="btn">Get Rate Card</Link>
           </div>
           <div className="foot-grid">
             <div>
@@ -175,16 +184,18 @@ export default function Layout() {
             </div>
             <div>
               <h4>Services</h4>
+              <Link to="/shop">Shop</Link>
               <Link to="/birds">Whole Birds</Link>
               <Link to="/eggs">Desi Eggs</Link>
               <Link to="/equipment">Farm Equipments</Link>
               <Link to="/feed">Feed</Link>
               <Link to="/farm-development">Farm Development</Link>
+              <Link to="/rate-card">Rate Card</Link>
             </div>
             <div>
               <h4>Partnerships</h4>
               <Link to="/contract-farming">Contract Farming</Link>
-              <Link to="/b2b-supply">B2B Supply</Link>
+              <Link to="/b2b-supply">Partnership</Link>
               <Link to="/about">About Us</Link>
               <Link to="/contact">Contact Us</Link>
             </div>

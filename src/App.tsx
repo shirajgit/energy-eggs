@@ -8,6 +8,8 @@ import Feed from './pages/Feed'
 import FarmDevelopment from './pages/FarmDevelopment'
 import ContractFarming from './pages/ContractFarming'
 import B2BSupply from './pages/B2BSupply'
+import RateCard from './pages/RateCard'
+import Shop from './pages/Shop'
 import About from './pages/About'
 import Contact from './pages/Contact'
 
@@ -25,6 +27,8 @@ export default function App() {
           <Route path="/contract-farming" element={<ContractFarming />} />
           <Route path="/farmer-partners" element={<Navigate to="/contract-farming" replace />} />
           <Route path="/b2b-supply" element={<B2BSupply />} />
+          <Route path="/rate-card" element={<RateCard />} />
+          <Route path="/shop" element={<Shop />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/" replace />} />

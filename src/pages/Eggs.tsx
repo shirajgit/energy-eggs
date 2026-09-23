@@ -2,6 +2,8 @@ import type { ReactNode } from 'react'
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
+import EggMark from '../components/EggMark'
+import { EGG_RATES, PROCESSING_CHARGES } from '../data/rates'
 
 const EGG_CATEGORIES: [name: string, text: string, shell: string][] = [
   ['Sonali Eggs', 'For businesses looking for consistent supply of Sonali eggs.', '#F0D5AC'],
@@ -10,20 +12,6 @@ const EGG_CATEGORIES: [name: string, text: string, shell: string][] = [
 ]
 
 const PROGRAMMES = ['Daily requirements', 'Weekly requirements', 'Monthly requirements', 'Contract requirements']
-
-const EGG_RATES: [commitment: string, aGrade: string, abGrade: string, bGrade: string][] = [
-  ['5,000 – 9,999', '₹12.00', '₹11.75', '₹11.00'],
-  ['10,000 – 19,999', '₹11.75', '₹11.50', '₹11.25'],
-  ['20,000 – 49,999', '₹11.50', '₹11.25', '₹11.00'],
-  ['50,000 – 99,999', '₹11.25', '₹11.00', '₹10.75'],
-  ['100,000+', 'Custom', 'Custom', 'Custom'],
-]
-
-const PROCESSING_CHARGES: [service: string, charge: string, note: string][] = [
-  ['Unwashed', '₹0.00', 'Straight from the farm, as collected.'],
-  ['Washed + Graded', '₹0.50', 'Cleaned and sorted for consistency.'],
-  ['Washed + Graded + Packed', '₹1.00', 'Retail-ready, packed for your shelf.'],
-]
 
 const EGG_VALUES: [title: string, text: string, icon: ReactNode][] = [
   ['Natural Nutrition', 'Wholesome eggs for healthier lives.',
@@ -35,15 +23,6 @@ const EGG_VALUES: [title: string, text: string, icon: ReactNode][] = [
   ['B2B Focus', 'Partnering with farms, retailers, food service and institutions.',
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="8" r="3" /><path d="M3 19c0-3.2 2.8-5 6-5s6 1.8 6 5" /><circle cx="17" cy="9" r="2.4" /><path d="M17.5 14c2.2.4 3.5 2 3.5 4.5" /></svg>],
 ]
-
-function EggMark({ shell }: { shell: string }) {
-  return (
-    <svg viewBox="0 0 24 30" className="egg-mark" aria-hidden="true">
-      <path d="M12 1.5C6.8 1.5 2.5 11 2.5 18a9.5 9.5 0 0 0 19 0c0-7-4.3-16.5-9.5-16.5z" fill={shell} stroke="rgba(65,64,66,.18)" strokeWidth="1" />
-      <ellipse cx="8.6" cy="10.5" rx="2.2" ry="3.4" fill="rgba(255,255,255,.45)" transform="rotate(-18 8.6 10.5)" />
-    </svg>
-  )
-}
 
 export default function Eggs() {
   return (

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { submitEnquiry } from '../lib/enquiryApi'
 
 const INTERESTS = [
   'Whole Birds', 'Desi Eggs', 'Poultry Equipment', 'Farm Construction',
@@ -19,6 +20,19 @@ export default function EnquiryForm() {
     setInterests((prev) => (prev.includes(i) ? prev.filter((x) => x !== i) : [...prev, i]))
 
   const handleSubmit = () => {
+    submitEnquiry({
+      source: 'B2B Enquiry',
+      name,
+      phone,
+      details: {
+        'Interested in': interests.join(', '),
+        Breed: breed,
+        Quantity: quantity,
+        Location: location,
+        'Business type': businessType,
+        'Additional requirements': notes,
+      },
+    })
     const body = [
       `Name: ${name || '—'}`,
       `Phone: ${phone || '—'}`,
