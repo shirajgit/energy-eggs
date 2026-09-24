@@ -704,3 +704,20 @@ footer p{font-size:.92rem;max-width:34ch}
 .multi-menu button.on{color:var(--brown);font-weight:600}
 .multi-check{width:18px;height:18px;flex:none;border:1.5px solid var(--line);border-radius:6px;display:grid;place-items:center;font-size:.65rem;color:#fff;transition:background .15s,border-color .15s}
 .multi-menu button.on .multi-check{background:var(--orange);border-color:var(--orange)}
+
+/* ---- page hero with photo background ---- */
+.page-hero.has-bg{padding:96px 0 84px}
+.page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 62%;pointer-events:none}
+.page-hero-veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(253,247,238,.93) 0%,rgba(253,247,238,.82) 45%,rgba(253,247,238,.96) 100%)}
+.page-hero.has-bg .page-hero-inner{z-index:2}
+@media(max-width:760px){.page-hero.has-bg{padding:60px 0 52px}}
+
+/* ---- page hero slideshow ---- */
+.page-hero-slides{position:absolute;inset:0;pointer-events:none}
+.page-hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease-in-out;will-change:opacity;transform:scale(1.04)}
+.page-hero-slide.on{opacity:1;animation:hero-kenburns 6s ease-out forwards}
+@keyframes hero-kenburns{from{transform:scale(1.04)}to{transform:scale(1.11)}}
+@media(prefers-reduced-motion:reduce){
+  .page-hero-slide{transition:none}
+  .page-hero-slide.on{animation:none;transform:none}
+}

@@ -3,6 +3,7 @@ import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
 import VolumeCommitment from '../components/VolumeCommitment'
+import aboutHeroImg from '../assets/about-hero.jpg'
 
 const PILLARS = [
   ['/birds', 'Whole Birds', 'Sonali, Aseel, Kadaknath and Fiyoumi birds supplied to B2B customers at scale.'],
@@ -55,7 +56,7 @@ const STATS = [
 export default function About() {
   return (
     <>
-      <PageHero eyebrow="About Energy Eggs" title={<>Building the next generation of desi poultry <span>supply.</span></>} />
+      <PageHero eyebrow="About Energy Eggs" title={<>Building the next generation of desi poultry <span>supply.</span></>} bg={aboutHeroImg} bgPosition="center 38%" />
 
       {/* OUR STORY */}
       <section>

@@ -3,6 +3,19 @@ import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
 import VolumeCommitment from '../components/VolumeCommitment'
+import slideEggs from '../assets/slide-eggs.jpg'
+import slideBirds from '../assets/slide-birds.jpg'
+import slideFeed from '../assets/slide-feed.jpg'
+import slideEquipment from '../assets/slide-equipment.jpg'
+import slideFarm from '../assets/slide-farm.jpg'
+
+const HERO_SLIDES = [
+  { src: slideEggs, pos: 'center 58%' },
+  { src: slideBirds, pos: 'center 40%' },
+  { src: slideFeed, pos: 'center 55%' },
+  { src: slideEquipment, pos: 'center 60%' },
+  { src: slideFarm, pos: 'center 55%' },
+]
 
 const SERVE = [
   ['Restaurants', 'Reliable poultry and egg supply for daily kitchen requirements.'],
@@ -64,7 +77,7 @@ const FAQ: [q: string, a: string][] = [
 export default function B2BSupply() {
   return (
     <>
-      <PageHero eyebrow="B2B Procurement" title={<>Tell us what you need. We build the supply <span>around it.</span></>}>
+      <PageHero eyebrow="B2B Procurement" title={<>Tell us what you need. We build the supply <span>around it.</span></>} slides={HERO_SLIDES}>
         <p>
           Every business has a different requirement. That's why Energy Eggs is designed around
           commercial procurement rather than a one-size-fits-all catalogue.

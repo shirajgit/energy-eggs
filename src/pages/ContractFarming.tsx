@@ -3,6 +3,7 @@ import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
 import pastureFarmImg from '../assets/pasture-farm.jpeg'
 import deepLitterImg from '../assets/deep-litter-farm.jpeg'
+import contractHeroImg from '../assets/contract-hero.jpg'
 
 const MODEL_IMAGES: Record<string, [src: string, alt: string]> = {
   'pasture-raised': [pastureFarmImg, 'Pasture-raised farm layout — 8,000 sq ft coop with a 5-acre bio-secured pasture area for 5,000 birds'],
@@ -144,7 +145,7 @@ const TERMS = [
 export default function ContractFarming() {
   return (
     <>
-      <PageHero eyebrow="Contract Farming" title={<>Grow with <span>Energy Eggs.</span></>}>
+      <PageHero eyebrow="Contract Farming" title={<>Grow with <span>Energy Eggs.</span></>} bg={contractHeroImg}>
         <p>
           We partner with farmers to create a structured desi poultry production network. Instead of
           every farmer working independently, Energy Eggs can provide a defined production framework
