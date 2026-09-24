@@ -37,7 +37,7 @@ export default function PageHero({ eyebrow, title, children, bg, bgPosition, sli
               />
             ))}
           </div>
-          <div className="page-hero-veil" aria-hidden="true" />
+          <div className="page-hero-veil veil-slides" aria-hidden="true" />
         </>
       ) : bg ? (
         <>
@@ -46,7 +46,7 @@ export default function PageHero({ eyebrow, title, children, bg, bgPosition, sli
             style={{ backgroundImage: `url(${bg})`, ...(bgPosition ? { backgroundPosition: bgPosition } : {}) }}
             aria-hidden="true"
           />
-          <div className="page-hero-veil" aria-hidden="true" />
+          <div className="page-hero-veil veil-slides" aria-hidden="true" />
         </>
       ) : null}
       <div className="wrap">

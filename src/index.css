@@ -713,11 +713,16 @@ footer p{font-size:.92rem;max-width:34ch}
 @media(max-width:760px){.page-hero.has-bg{padding:60px 0 52px}}
 
 /* ---- page hero slideshow ---- */
+.page-hero.has-bg{padding:104px 0 92px}
 .page-hero-slides{position:absolute;inset:0;pointer-events:none}
-.page-hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease-in-out;will-change:opacity;transform:scale(1.04)}
-.page-hero-slide.on{opacity:1;animation:hero-kenburns 6s ease-out forwards}
-@keyframes hero-kenburns{from{transform:scale(1.04)}to{transform:scale(1.11)}}
+.page-hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease-in-out;will-change:opacity}
+.page-hero-slide.on{opacity:1}
+/* lighter, radial scrim: photo shows around a soft warm halo behind the text */
+.veil-slides{background:radial-gradient(ellipse 92% 86% at 50% 46%,rgba(253,247,238,.9) 0%,rgba(253,247,238,.74) 46%,rgba(253,247,238,.5) 78%,rgba(253,247,238,.42) 100%)}
+.veil-slides::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,247,238,.3),transparent 22%,transparent 80%,rgba(253,247,238,.55))}
+@media(max-width:760px){
+  .veil-slides{background:radial-gradient(ellipse 130% 80% at 50% 46%,rgba(253,247,238,.94) 0%,rgba(253,247,238,.82) 55%,rgba(253,247,238,.62) 100%)}
+}
 @media(prefers-reduced-motion:reduce){
   .page-hero-slide{transition:none}
-  .page-hero-slide.on{animation:none;transform:none}
 }

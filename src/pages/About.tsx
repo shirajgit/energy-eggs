@@ -56,7 +56,7 @@ const STATS = [
 export default function About() {
   return (
     <>
-      <PageHero eyebrow="About Energy Eggs" title={<>Building the next generation of desi poultry <span>supply.</span></>} bg={aboutHeroImg} bgPosition="center 38%" />
+      <PageHero eyebrow="About Energy Eggs" title={<>Building the next generation of desi poultry <span>supply.</span></>} bg={aboutHeroImg} bgPosition="center 30%" />
 
       {/* OUR STORY */}
       <section>

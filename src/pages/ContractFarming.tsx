@@ -145,7 +145,7 @@ const TERMS = [
 export default function ContractFarming() {
   return (
     <>
-      <PageHero eyebrow="Contract Farming" title={<>Grow with <span>Energy Eggs.</span></>} bg={contractHeroImg}>
+      <PageHero eyebrow="Contract Farming" title={<>Grow with <span>Energy Eggs.</span></>} bg={contractHeroImg} bgPosition="center 45%">
         <p>
           We partner with farmers to create a structured desi poultry production network. Instead of
           every farmer working independently, Energy Eggs can provide a defined production framework
