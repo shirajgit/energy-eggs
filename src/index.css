@@ -514,6 +514,16 @@ a.pill:hover{border-color:#f0c5a4}
   .modal-actions{flex-direction:column}
 }
 
+/* ---------- Enquiry submit states ---------- */
+.enq-error{color:#c0392b;font-size:.9rem;margin-top:10px}
+.enquiry-sent{text-align:center;padding:48px 24px;background:var(--cream);border:1px solid var(--line);border-radius:24px}
+.enquiry-sent h3{font-size:1.4rem;margin-bottom:8px}
+.enquiry-sent p{color:var(--brown-soft)}
+.modal-sent{display:block;text-align:center;padding:16px 0 4px}
+.modal-sent h4{font-size:1.2rem;margin-bottom:8px}
+.modal-sent p{color:var(--brown-soft);margin-bottom:18px}
+.btn[disabled]{opacity:.6;cursor:default}
+
 /* ---------- CTA band ---------- */
 .closing{padding-top:0}
 .cta-band{background:linear-gradient(120deg,var(--orange),var(--orange-light));color:#fff;text-align:center;border-radius:28px;padding:64px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden}

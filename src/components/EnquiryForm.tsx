@@ -15,12 +15,14 @@ export default function EnquiryForm() {
   const [location, setLocation] = useState('')
   const [businessType, setBusinessType] = useState('')
   const [notes, setNotes] = useState('')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   const toggleInterest = (i: string) =>
     setInterests((prev) => (prev.includes(i) ? prev.filter((x) => x !== i) : [...prev, i]))
 
-  const handleSubmit = () => {
-    submitEnquiry({
+  const handleSubmit = async () => {
+    setStatus('sending')
+    const ok = await submitEnquiry({
       source: 'B2B Enquiry',
       name,
       phone,
@@ -33,17 +35,16 @@ export default function EnquiryForm() {
         'Additional requirements': notes,
       },
     })
-    const body = [
-      `Name: ${name || '—'}`,
-      `Phone: ${phone || '—'}`,
-      `Interested in: ${interests.join(', ') || '—'}`,
-      `Breed: ${breed}`,
-      `Quantity: ${quantity}`,
-      `Location: ${location || '—'}`,
-      `Business type: ${businessType || '—'}`,
-      `Additional requirements: ${notes || '—'}`,
-    ].join('\n')
-    window.location.href = `mailto:hello@energyeggs.in?subject=${encodeURIComponent('B2B Enquiry — Energy Eggs')}&body=${encodeURIComponent(body)}`
+    setStatus(ok ? 'sent' : 'error')
+  }
+
+  if (status === 'sent') {
+    return (
+      <div className="enquiry enquiry-sent">
+        <h3>Enquiry received ✓</h3>
+        <p>Thanks{name ? `, ${name}` : ''}! Our B2B team will get back to you shortly with availability and a structured quote.</p>
+      </div>
+    )
   }
 
   return (
@@ -110,7 +111,12 @@ export default function EnquiryForm() {
         </div>
       </fieldset>
 
-      <button type="submit" className="btn btn-lg">Get a B2B Quote</button>
+      <button type="submit" className="btn btn-lg" disabled={status === 'sending'}>
+        {status === 'sending' ? 'Sending…' : 'Get a B2B Quote'}
+      </button>
+      {status === 'error' && (
+        <p className="enq-error">Something went wrong sending your enquiry. Please try again, or call us directly.</p>
+      )}
     </form>
   )
 }

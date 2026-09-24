@@ -31,24 +31,30 @@ function QuoteForm({ kind, initialInterest, options, onClose }: { kind: QuoteKin
     initialInterest && optionList.includes(initialInterest) ? initialInterest : optionList[0],
   )
   const [quantity, setQuantity] = useState('')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
-  const handleSubmit = () => {
-    submitEnquiry({
+  const handleSubmit = async () => {
+    setStatus('sending')
+    const ok = await submitEnquiry({
       source: COPY[kind][0],
       name,
       phone,
       email,
       details: { 'Interested in': interest, Quantity: quantity },
     })
-    const body = [
-      `Name: ${name || '—'}`,
-      `Phone: ${phone || '—'}`,
-      `Business email: ${email || '—'}`,
-      `Interested in: ${interest}`,
-      `Quantity: ${quantity || '—'}`,
-    ].join('\n')
-    const subject = kind === 'equipment' ? `Equipment Enquiry — ${interest}` : `Rate Card Enquiry — ${interest}`
-    window.location.href = `mailto:hello@energyeggs.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setStatus(ok ? 'sent' : 'error')
+  }
+
+  if (status === 'sent') {
+    return (
+      <div className="modal-form modal-sent">
+        <h4>Enquiry received ✓</h4>
+        <p>Thanks{name ? `, ${name}` : ''}! Our B2B team will get back to you shortly.</p>
+        <div className="modal-actions">
+          <button type="button" className="btn" onClick={onClose}>Done</button>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -81,9 +87,14 @@ function QuoteForm({ kind, initialInterest, options, onClose }: { kind: QuoteKin
         />
       </label>
       <div className="full modal-actions">
-        <button type="submit" className="btn">Send Enquiry</button>
+        <button type="submit" className="btn" disabled={status === 'sending'}>
+          {status === 'sending' ? 'Sending…' : 'Send Enquiry'}
+        </button>
         <button type="button" className="btn ghost" onClick={onClose}>Cancel</button>
       </div>
+      {status === 'error' && (
+        <p className="full enq-error">Something went wrong sending your enquiry. Please try again, or call us directly.</p>
+      )}
     </form>
   )
 }

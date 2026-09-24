@@ -10,16 +10,16 @@ export type EnquiryInput = {
   details?: Record<string, string>
 }
 
-// Fire-and-forget: the mailto handoff must never be blocked by the API being down.
-export function submitEnquiry(input: EnquiryInput): void {
+export async function submitEnquiry(input: EnquiryInput): Promise<boolean> {
   try {
-    void fetch(`${API_URL}/api/submissions`, {
+    const res = await fetch(`${API_URL}/api/submissions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(input),
       keepalive: true,
-    }).catch(() => {})
+    })
+    return res.ok
   } catch {
-    // ignore — enquiry still goes out via email
+    return false
   }
 }

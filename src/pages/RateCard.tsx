@@ -5,7 +5,7 @@ import { MItem, MReveal, MStagger } from '../components/Motion'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
 import GetQuoteModal, { type QuoteKind } from '../components/GetQuoteModal'
-import { BIRD_RATE_CARDS, BIRD_RATE_NOTES, EGG_RATES, PROCESSING_CHARGES } from '../data/rates'
+import { useLiveRates } from '../lib/ratesApi'
 import sonaliImg from '../assets/sonali.png'
 import aseelImg from '../assets/aseel.png'
 import kadaknathImg from '../assets/kadaknath.png'
@@ -18,9 +18,10 @@ const BREED_IMAGES: Record<string, string> = {
 
 
 export default function RateCard() {
+  const { birdCards, birdNotes, eggRates, processing } = useLiveRates()
   const [active, setActive] = useState(0)
   const [modal, setModal] = useState<QuoteKind | null>(null)
-  const card = BIRD_RATE_CARDS[active]
+  const card = birdCards[Math.min(active, birdCards.length - 1)]
 
   return (
     <MotionConfig reducedMotion="user">
@@ -46,14 +47,14 @@ export default function RateCard() {
           </MReveal>
 
           <MReveal className="rate-tabs">
-            {BIRD_RATE_CARDS.map((c, i) => (
+            {birdCards.map((c, i) => (
               <button
                 key={c.name}
                 type="button"
                 className={`rate-tab rate-tab-img${i === active ? ' on' : ''}`}
                 onClick={() => setActive(i)}
               >
-                <img src={BREED_IMAGES[c.name]} alt="" />
+                {BREED_IMAGES[c.name] && <img src={BREED_IMAGES[c.name]} alt="" />}
                 {c.name}
               </button>
             ))}
@@ -71,9 +72,11 @@ export default function RateCard() {
                 <h3>{card.name}</h3>
                 <p>Rate (₹) per bird · For orders less than 10 birds: {card.perKg}</p>
               </div>
-              <div className="model-top-bird">
-                <img src={BREED_IMAGES[card.name]} alt={`${card.name} bird`} />
-              </div>
+              {BREED_IMAGES[card.name] && (
+                <div className="model-top-bird">
+                  <img src={BREED_IMAGES[card.name]} alt={`${card.name} bird`} />
+                </div>
+              )}
             </div>
             <div className="rate-table-wrap">
               <table className="spec-table">
@@ -101,7 +104,7 @@ export default function RateCard() {
 
           <MReveal className="chip-row">
             <div className="chips">
-              {BIRD_RATE_NOTES.map((n) => <span key={n} className="pill">{n}</span>)}
+              {birdNotes.map((n) => <span key={n} className="pill">{n}</span>)}
             </div>
           </MReveal>
         </div>
@@ -125,7 +128,7 @@ export default function RateCard() {
           </MReveal>
 
           <MStagger className="tier-list" gap={0.08} amount={0.1}>
-            {EGG_RATES.map(([commitment, a, ab, b]) => {
+            {eggRates.map(([commitment, a, ab, b]) => {
               const custom = commitment.includes('+')
               return (
                 <MItem key={commitment} className={`tier${custom ? ' custom' : ''}`}>
@@ -149,7 +152,7 @@ export default function RateCard() {
             <h3>Choose how your eggs arrive</h3>
           </MReveal>
           <MStagger className="addon-grid" gap={0.12}>
-            {PROCESSING_CHARGES.map(([service, charge, note], i) => (
+            {processing.map(([service, charge, note], i) => (
               <MItem key={service} className="addon">
                 <span className="addon-step">{String(i + 1).padStart(2, '0')}</span>
                 <h3>{service}</h3>
