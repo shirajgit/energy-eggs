@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
+import pastureFarmImg from '../assets/pasture-farm.jpeg'
+import deepLitterImg from '../assets/deep-litter-farm.jpeg'
 
 const FARM_STEPS = [
   ['01', 'Site Planning', 'Understand the land, capacity and intended farming model.'],
@@ -21,19 +23,19 @@ const DELIVERABLES = [
   ['Programme Alignment', 'Farms built for Energy Eggs schemes follow the approved design — construction starts only after design approval.'],
 ]
 
-const REFERENCE_FARMS: [title: string, points: string[]][] = [
+const REFERENCE_FARMS: [title: string, points: string[], img: string, alt: string][] = [
   ['Pasture-Raised Reference Farm', [
     'Land: approx. 5 acres, including a dedicated pasture area',
     'Shed: approx. 8,000 sq. ft.',
     'Capacity: 5,000 birds per batch',
     'Outdoor zones, shade and movement areas designed in',
-  ]],
+  ], pastureFarmImg, 'Pasture-raised reference farm layout — 8,000 sq ft coop with a 5-acre bio-secured pasture area'],
   ['Deep Litter Reference Farm', [
     'Land: approx. 25,000 sq. ft.',
     'Shed: approx. 8,000 sq. ft.',
     'Capacity: 5,000 birds per batch',
     'Litter management and ventilation planned into the layout',
-  ]],
+  ], deepLitterImg, 'Deep litter reference farm layout — 8,000 sq ft shed on 25,000 sq ft of land for 5,000 birds'],
 ]
 
 const WHY_BUILD = [
@@ -116,8 +118,11 @@ export default function FarmDevelopment() {
             </p>
           </Reveal>
           <div className="cards-2">
-            {REFERENCE_FARMS.map(([title, points]) => (
+            {REFERENCE_FARMS.map(([title, points, img, alt]) => (
               <Reveal key={title} className="panel">
+                <a className="farm-visual" href={img} target="_blank" rel="noreferrer" title="Open full-size layout">
+                  <img src={img} alt={alt} loading="lazy" />
+                </a>
                 <h3>{title}</h3>
                 <ul className="story-list">
                   {points.map((p) => (

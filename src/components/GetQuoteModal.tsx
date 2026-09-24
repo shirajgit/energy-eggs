@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { submitEnquiry } from '../lib/enquiryApi'
 
@@ -27,10 +27,26 @@ function QuoteForm({ kind, initialInterest, options, onClose }: { kind: QuoteKin
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
-  const [interest, setInterest] = useState(
-    initialInterest && optionList.includes(initialInterest) ? initialInterest : optionList[0],
+  const [interests, setInterests] = useState<string[]>(
+    initialInterest && optionList.includes(initialInterest) ? [initialInterest] : [optionList[0]],
   )
   const [quantity, setQuantity] = useState('')
+
+  const toggleInterest = (o: string) =>
+    setInterests((prev) => (prev.includes(o) ? prev.filter((x) => x !== o) : [...prev, o]))
+
+  const interest = interests.join(', ')
+
+  const [pickerOpen, setPickerOpen] = useState(false)
+  const pickerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const onDown = (e: MouseEvent) => {
+      if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) setPickerOpen(false)
+    }
+    document.addEventListener('mousedown', onDown)
+    return () => document.removeEventListener('mousedown', onDown)
+  }, [])
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   const handleSubmit = async () => {
@@ -71,12 +87,46 @@ function QuoteForm({ kind, initialInterest, options, onClose }: { kind: QuoteKin
         Business Email
         <input type="email" value={email} placeholder="you@business.com" onChange={(e) => setEmail(e.target.value)} />
       </label>
-      <label>
-        Interested In
-        <select value={interest} onChange={(e) => setInterest(e.target.value)}>
-          {optionList.map((o) => <option key={o}>{o}</option>)}
-        </select>
-      </label>
+      <div className="full multi" ref={pickerRef}>
+        <span className="multi-label">Interested In</span>
+        <button
+          type="button"
+          className={`multi-field ${pickerOpen ? 'open' : ''}`}
+          onClick={() => setPickerOpen((v) => !v)}
+          aria-expanded={pickerOpen}
+          aria-haspopup="listbox"
+        >
+          {interests.length === 0 && <span className="multi-ph">Select products…</span>}
+          {interests.map((i) => (
+            <span key={i} className="multi-tag">
+              {i}
+              <span
+                role="button"
+                aria-label={`Remove ${i}`}
+                onClick={(e) => { e.stopPropagation(); toggleInterest(i) }}
+              >
+                ✕
+              </span>
+            </span>
+          ))}
+          <span className="multi-caret" aria-hidden="true">▾</span>
+        </button>
+        {pickerOpen && (
+          <ul className="multi-menu" role="listbox" aria-multiselectable="true">
+            {optionList.map((o) => {
+              const on = interests.includes(o)
+              return (
+                <li key={o}>
+                  <button type="button" role="option" aria-selected={on} className={on ? 'on' : ''} onClick={() => toggleInterest(o)}>
+                    <span className="multi-check" aria-hidden="true">{on ? '✓' : ''}</span>
+                    {o}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        )}
+      </div>
       <label className="full">
         Quantity
         <input
@@ -87,7 +137,7 @@ function QuoteForm({ kind, initialInterest, options, onClose }: { kind: QuoteKin
         />
       </label>
       <div className="full modal-actions">
-        <button type="submit" className="btn" disabled={status === 'sending'}>
+        <button type="submit" className="btn" disabled={status === 'sending' || interests.length === 0}>
           {status === 'sending' ? 'Sending…' : 'Send Enquiry'}
         </button>
         <button type="button" className="btn ghost" onClick={onClose}>Cancel</button>

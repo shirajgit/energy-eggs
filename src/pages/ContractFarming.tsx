@@ -1,6 +1,13 @@
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
+import pastureFarmImg from '../assets/pasture-farm.jpeg'
+import deepLitterImg from '../assets/deep-litter-farm.jpeg'
+
+const MODEL_IMAGES: Record<string, [src: string, alt: string]> = {
+  'pasture-raised': [pastureFarmImg, 'Pasture-raised farm layout — 8,000 sq ft coop with a 5-acre bio-secured pasture area for 5,000 birds'],
+  'deep-litter': [deepLitterImg, 'Deep litter farm layout — 8,000 sq ft shed on 25,000 sq ft of land for 5,000 birds'],
+}
 
 const MODELS = [
   {
@@ -230,6 +237,13 @@ export default function ContractFarming() {
               <Reveal className="model-title">
                 <h2><span className="mn">{i + 1}.</span> {m.label}</h2>
               </Reveal>
+              {MODEL_IMAGES[m.id] && (
+                <Reveal>
+                  <a className="farm-visual" href={MODEL_IMAGES[m.id][0]} target="_blank" rel="noreferrer" title="Open full-size layout">
+                    <img src={MODEL_IMAGES[m.id][0]} alt={MODEL_IMAGES[m.id][1]} loading="lazy" />
+                  </a>
+                </Reveal>
+              )}
               <Reveal className="model">
               <div className="model-top">
                 <h3>{m.name}</h3>
