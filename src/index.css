@@ -778,17 +778,25 @@ footer p{font-size:.92rem;max-width:34ch}
 .modal-call{margin-top:14px;font-size:.86rem;color:var(--brown-soft);text-align:center}
 .modal-call a{color:var(--orange);font-weight:600}
 
-/* ---- floating call button (all pages) ---- */
-.call-fab{position:fixed;right:20px;bottom:22px;z-index:80;display:inline-flex;align-items:center;gap:9px;background:linear-gradient(120deg,var(--orange),var(--orange-light));color:#fff;padding:13px 20px;border-radius:40px;font-weight:600;font-size:.9rem;box-shadow:0 14px 30px -10px rgba(238,102,32,.7);transition:transform .2s,box-shadow .2s}
-.call-fab:hover{transform:translateY(-2px);box-shadow:0 20px 38px -12px rgba(238,102,32,.8);text-decoration:none}
-.call-fab:active{transform:translateY(0) scale(.97)}
-.call-fab svg{width:19px;height:19px;flex:none;animation:call-ring 2.4s ease-in-out infinite}
+/* ---- floating contact buttons (all pages) ---- */
+.fab-stack{position:fixed;right:20px;bottom:22px;z-index:80;display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+.fab{display:inline-flex;align-items:center;gap:9px;color:#fff;padding:13px 20px;border-radius:40px;font-weight:600;font-size:.9rem;transition:transform .2s,box-shadow .2s}
+.fab:hover{transform:translateY(-2px);text-decoration:none}
+.fab:active{transform:translateY(0) scale(.97)}
+.fab svg{width:19px;height:19px;flex:none}
+.fab-call{background:linear-gradient(120deg,var(--orange),var(--orange-light));box-shadow:0 14px 30px -10px rgba(238,102,32,.7)}
+.fab-call:hover{box-shadow:0 20px 38px -12px rgba(238,102,32,.8)}
+.fab-call svg{animation:call-ring 2.4s ease-in-out infinite}
+.fab-whatsapp{background:linear-gradient(120deg,#25d366,#1faf52);box-shadow:0 14px 30px -10px rgba(37,211,102,.7)}
+.fab-whatsapp:hover{box-shadow:0 20px 38px -12px rgba(37,211,102,.8)}
 @keyframes call-ring{0%,64%,100%{transform:rotate(0)}68%{transform:rotate(-12deg)}72%{transform:rotate(12deg)}76%{transform:rotate(-9deg)}80%{transform:rotate(9deg)}84%{transform:rotate(0)}}
 @media(max-width:560px){
-  .call-fab{right:16px;bottom:16px;padding:13px}
-  .call-fab-label{display:none}
+  .fab-stack{right:16px;bottom:18px;gap:12px}
+  .fab{padding:18px}
+  .fab svg{width:26px;height:26px}
+  .fab-label{display:none}
 }
-@media(prefers-reduced-motion:reduce){.call-fab svg{animation:none}}
+@media(prefers-reduced-motion:reduce){.fab-call svg{animation:none}}
 
 /* reduced motion: no menu animation */
 @media(prefers-reduced-motion:reduce){

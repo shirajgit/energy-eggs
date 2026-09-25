@@ -2,7 +2,7 @@ export const CALL_NUMBER = '+917878787226'
 export const CALL_DISPLAY = '+91 78787 87226'
 
 // A click-to-call button with a phone icon, shown alongside CTAs.
-export default function CallButton({ className = 'btn ghost call-btn', label = 'Call' }: {
+export default function CallButton({ className = 'btn ghost call-btn', label = 'Call Us' }: {
   className?: string
   label?: string
 }) {

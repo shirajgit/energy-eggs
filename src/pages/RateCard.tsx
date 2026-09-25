@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
 import { MItem, MReveal, MStagger } from '../components/Motion'
 import PageHero from '../components/PageHero'
@@ -175,28 +174,6 @@ export default function RateCard() {
       {/* MORE DETAIL + CTA */}
       <section>
         <div className="wrap">
-          <MReveal className="sec-head">
-            <span className="eyebrow">Want The Full Picture?</span>
-            <h2>Behind these rates</h2>
-          </MReveal>
-          <MStagger className="cards-2" gap={0.15}>
-            <MItem className="panel rate-mini">
-              <h3>Whole Birds</h3>
-              <p style={{ color: 'var(--brown-soft)', fontSize: '.94rem' }}>
-                Four desi breeds — Sonali, Aseel, Kadaknath and Fiyoumi — raised through structured
-                deep-litter and pasture-raised models for B2B supply.
-              </p>
-              <Link to="/birds" className="panel-link">Explore the birds →</Link>
-            </MItem>
-            <MItem className="panel rate-mini">
-              <h3>Desi Eggs</h3>
-              <p style={{ color: 'var(--brown-soft)', fontSize: '.94rem' }}>
-                Sonali, Kadaknath and Aseel eggs — graded, processed and packed to your requirement,
-                with volume commitment programmes for priority supply.
-              </p>
-              <Link to="/eggs" className="panel-link">Explore the eggs →</Link>
-            </MItem>
-          </MStagger>
           <MiniCta
             title="Ready to order at these rates?"
             text="Tell us your product, volumes and delivery requirement — our B2B team responds with a structured commercial proposal."
