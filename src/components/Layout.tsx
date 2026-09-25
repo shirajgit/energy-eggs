@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Logo from './Logo'
+import { EnquiryProvider } from './EnquiryModal'
+import { CALL_DISPLAY, CALL_NUMBER } from './CallButton'
 
 const SERVICES = [
   ['/birds', 'Birds'],
@@ -68,6 +70,7 @@ export default function Layout() {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const dropRef = useRef<HTMLDivElement>(null)
+  const navRef = useRef<HTMLElement>(null)
   const { pathname } = useLocation()
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 35, damping: 14, mass: 0.4, restDelta: 0.001 })
@@ -83,9 +86,13 @@ export default function Layout() {
       if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
         setServicesOpen(false)
       }
+      // Close the mobile menu when tapping anywhere outside the nav
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+      }
     }
-    document.addEventListener('click', onClickOutside)
-    return () => document.removeEventListener('click', onClickOutside)
+    document.addEventListener('pointerdown', onClickOutside)
+    return () => document.removeEventListener('pointerdown', onClickOutside)
   }, [])
 
   useEffect(() => {
@@ -108,7 +115,7 @@ export default function Layout() {
   }, [pathname])
 
   return (
-    <>
+    <EnquiryProvider>
       <SeoMeta />
       <ScrollToTop />
 
@@ -116,7 +123,7 @@ export default function Layout() {
       <header className={scrolled ? 'scrolled' : ''}>
         <motion.div className="scroll-progress" style={{ scaleX: progress }} />
         <div className="wrap">
-          <nav aria-label="Main navigation">
+          <nav aria-label="Main navigation" ref={navRef}>
             <Logo />
             <div className={`navlinks ${menuOpen ? 'open' : ''}`}> 
 
@@ -149,20 +156,29 @@ export default function Layout() {
               <Link to="/shop" className="btn nav-cta ghost">Shop</Link>
             </div>
             <button
-              className="menu-toggle"
+              className={`menu-toggle ${menuOpen ? 'is-open' : ''}`}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((o) => !o)}
             >
-              {menuOpen ? '✕' : '☰'}
+              <span className="burger" aria-hidden="true"><i /><i /><i /></span>
             </button>
-          </nav> 
+          </nav>
         </div>
+        <div className={`nav-scrim ${menuOpen ? 'show' : ''}`} onClick={() => setMenuOpen(false)} aria-hidden="true" />
       </header>
 
       <main>
         <Outlet />
       </main>
+
+      {/* Floating call button — every page */}
+      <a className="call-fab" href={`tel:${CALL_NUMBER}`} aria-label={`Call Energy Eggs on ${CALL_DISPLAY}`}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+        <span className="call-fab-label">Call Us</span>
+      </a>
 
       {/* FOOTER */}
       <footer>
@@ -220,6 +236,6 @@ export default function Layout() {
           </div>
         </div>
       </footer>
-    </>
+    </EnquiryProvider>
   )
 }

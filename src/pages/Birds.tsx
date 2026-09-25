@@ -125,6 +125,7 @@ export default function Birds() {
             title="Need regular supply?"
             text="Tell us your requirement and our B2B team can develop a supply programme around your volume and specifications."
             cta="Request B2B Pricing"
+            source="Birds Enquiry"
           />
         </div>
       </section>

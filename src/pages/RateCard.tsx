@@ -201,6 +201,7 @@ export default function RateCard() {
             title="Ready to order at these rates?"
             text="Tell us your product, volumes and delivery requirement — our B2B team responds with a structured commercial proposal."
             cta="Talk to Our B2B Team"
+            source="B2B Supply"
           />
         </div>
       </section>

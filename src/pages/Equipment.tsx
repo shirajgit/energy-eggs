@@ -271,6 +271,7 @@ export default function Equipment() {
             title="From requirement to installation"
             text="Tell us your bird capacity, farm size, farming model and equipment requirement — and our team can help develop the appropriate farm setup."
             cta="Enquire for Equipment"
+            source="Equipment Enquiry"
           />
         </div>
       </section>

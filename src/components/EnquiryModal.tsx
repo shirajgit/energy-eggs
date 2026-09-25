@@ -1,0 +1,158 @@
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { submitEnquiry } from '../lib/enquiryApi'
+import { CALL_DISPLAY, CALL_NUMBER } from './CallButton'
+
+type OpenOpts = {
+  source?: string   // where the enquiry came from (button/section)
+  interest?: string // pre-filled interest line
+  title?: string    // modal heading
+  subtitle?: string
+}
+
+type Ctx = { open: (opts?: OpenOpts) => void }
+const EnquiryContext = createContext<Ctx | null>(null)
+
+export function useEnquiry() {
+  const ctx = useContext(EnquiryContext)
+  if (!ctx) throw new Error('useEnquiry must be used within EnquiryProvider')
+  return ctx
+}
+
+export function EnquiryProvider({ children }: { children: ReactNode }) {
+  const [opts, setOpts] = useState<OpenOpts | null>(null)
+
+  const open = useCallback((o?: OpenOpts) => setOpts(o ?? {}), [])
+  const close = useCallback(() => setOpts(null), [])
+
+  return (
+    <EnquiryContext.Provider value={{ open }}>
+      {children}
+      <EnquiryDialog opts={opts} onClose={close} />
+    </EnquiryContext.Provider>
+  )
+}
+
+function EnquiryDialog({ opts, onClose }: { opts: OpenOpts | null; onClose: () => void }) {
+  const isOpen = opts !== null
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+
+  useEffect(() => {
+    if (!isOpen) return
+    // reset each time it opens
+    setName(''); setPhone(''); setEmail(''); setMessage(''); setStatus('idle')
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [isOpen, onClose])
+
+  const handleSubmit = async () => {
+    setStatus('sending')
+    const details: Record<string, string> = {}
+    if (opts?.interest) details['Interested in'] = opts.interest
+    if (message) details['Message'] = message
+    const ok = await submitEnquiry({
+      source: opts?.source || 'Website Enquiry',
+      name,
+      phone,
+      email,
+      details,
+    })
+    setStatus(ok ? 'sent' : 'error')
+  }
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className="modal-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+        >
+          <motion.div
+            className="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={opts?.title || 'Enquiry'}
+            initial={{ opacity: 0, y: 34, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 24, scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button type="button" className="modal-close" aria-label="Close" onClick={onClose}>✕</button>
+
+            {status === 'sent' ? (
+              <div className="modal-form modal-sent">
+                <h4>Enquiry received ✓</h4>
+                <p>Thanks{name ? `, ${name}` : ''}! Our B2B team will get back to you shortly.</p>
+                <div className="modal-actions">
+                  <button type="button" className="btn" onClick={onClose}>Done</button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <span className="eyebrow">{opts?.source || 'Get in touch'}</span>
+                <h3>{opts?.title || 'Send an enquiry'}</h3>
+                <p className="modal-sub">
+                  {opts?.subtitle || 'Share your details and our B2B team will get back with the next steps.'}
+                </p>
+                <form className="field-grid modal-form" onSubmit={(e) => { e.preventDefault(); handleSubmit() }}>
+                  <label>
+                    Your Name
+                    <input type="text" value={name} placeholder="Full name" required onChange={(e) => setName(e.target.value)} />
+                  </label>
+                  <label>
+                    Phone
+                    <input type="tel" value={phone} placeholder="+91 …" required onChange={(e) => setPhone(e.target.value)} />
+                  </label>
+                  <label className="full">
+                    Business Email
+                    <input type="email" value={email} placeholder="you@business.com" onChange={(e) => setEmail(e.target.value)} />
+                  </label>
+                  {opts?.interest && (
+                    <label className="full">
+                      Interested In
+                      <input type="text" value={opts.interest} readOnly />
+                    </label>
+                  )}
+                  <label className="full">
+                    Your Requirement
+                    <textarea
+                      rows={3}
+                      value={message}
+                      placeholder="Tell us about your land, volumes, timelines or requirement…"
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                  </label>
+                  <div className="full modal-actions">
+                    <button type="submit" className="btn" disabled={status === 'sending'}>
+                      {status === 'sending' ? 'Sending…' : 'Send Enquiry'}
+                    </button>
+                    <button type="button" className="btn ghost" onClick={onClose}>Cancel</button>
+                  </div>
+                  {status === 'error' && (
+                    <p className="full enq-error">Something went wrong sending your enquiry. Please try again, or call us directly.</p>
+                  )}
+                </form>
+                <p className="modal-call">
+                  Prefer to talk? Call us at <a href={`tel:${CALL_NUMBER}`}>{CALL_DISPLAY}</a>
+                </p>
+              </>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}

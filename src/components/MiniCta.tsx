@@ -1,21 +1,33 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
+import { useEnquiry } from './EnquiryModal'
+import CallButton from './CallButton'
 
-export default function MiniCta({ title, text, cta, to = '/contact', center = false }: {
+export default function MiniCta({ title, text, cta, source, interest, center = false }: {
   title?: ReactNode
   text?: ReactNode
   cta: string
-  to?: string
+  source?: string
+  interest?: string
   center?: boolean
 }) {
+  const { open } = useEnquiry()
   return (
     <Reveal className={`mini-cta ${center ? 'center' : ''}`}>
       <div>
         {title && <h3>{title}</h3>}
         {text && <p>{text}</p>}
       </div>
-      <Link to={to} className="btn">{cta}</Link>
+      <div className="cta-actions">
+        <button
+          type="button"
+          className="btn"
+          onClick={() => open({ source: source || cta, title: cta, interest })}
+        >
+          {cta}
+        </button>
+        <CallButton />
+      </div>
     </Reveal>
   )
 }

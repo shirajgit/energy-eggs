@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { motion, MotionConfig } from 'framer-motion'
 import { CountUp, EASE, fadeUp, MItem, MReveal, MStagger, pop } from '../components/Motion'
 import SprintingHen from '../components/SprintingHen'
+import EnquiryButton from '../components/EnquiryButton'
+import CallButton from '../components/CallButton'
 import sonaliImg from '../assets/sonali.png'
 import aseelImg from '../assets/aseel.png'
 import kadaknathImg from '../assets/kadaknath.png'
@@ -155,6 +157,7 @@ export default function Home() {
               <motion.div className="hero-cta" variants={fadeUp}>
                 <Link to="/rate-card" className="btn">Get B2B Pricing</Link>
                 <Link to="/contract-farming" className="btn ghost">Become a Farmer Partner</Link>
+               
               </motion.div>
               <motion.div className="hero-stats" variants={fadeUp}>
                 <div><span className="n">4 Breeds</span><small>Sonali · Aseel · Kadaknath · Fiyoumi</small></div>
@@ -391,7 +394,8 @@ export default function Home() {
             <p>Energy Eggs is building a B2B ecosystem for the next generation of desi poultry.</p>
             <div className="hero-cta" style={{ justifyContent: 'center' }}>
               <Link to="/rate-card" className="btn">Get B2B Pricing</Link>
-              <Link to="/contract-farming" className="btn ghost light">Become a Farmer Partner</Link>
+              <EnquiryButton className="btn ghost light" source="Become a Farmer Partner">Become a Farmer Partner</EnquiryButton>
+              <CallButton className="btn ghost light call-btn" />
             </div>
           </MReveal>
         </div>

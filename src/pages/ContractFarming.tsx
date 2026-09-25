@@ -175,24 +175,7 @@ export default function ContractFarming() {
         </div>
       </section>
 
-      {/* PARTNERSHIP JOURNEY */}
-      <section className="alt">
-        <div className="wrap">
-          <Reveal className="sec-head">
-            <span className="eyebrow">The Partnership Journey</span>
-            <h2>From enquiry to your first buyback</h2>
-          </Reveal>
-          <div className="steps">
-            {JOURNEY.map(([num, title, text]) => (
-              <Reveal key={num} className="step">
-                <div className="num">{num}</div>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       <section>
         <div className="wrap">
@@ -297,6 +280,25 @@ export default function ContractFarming() {
         </div>
       </section>
 
+       {/* PARTNERSHIP JOURNEY */}
+      <section className="alt">
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <span className="eyebrow">The Partnership Journey</span>
+            <h2>From enquiry to your first buyback</h2>
+          </Reveal>
+          <div className="steps">
+            {JOURNEY.map(([num, title, text]) => (
+              <Reveal key={num} className="step">
+                <div className="num">{num}</div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="alt" id="farmer-partners">
         <div className="wrap">
           <Reveal className="sec-head">
@@ -316,6 +318,7 @@ export default function ContractFarming() {
             title="Who can partner?"
             text="Farmers with suitable land who are willing to operate according to the production, welfare, biosecurity and quality requirements of the applicable Energy Eggs programme."
             cta="Become a Farmer Partner"
+            source="Farmer Partnership"
           />
         </div>
       </section>
@@ -339,6 +342,7 @@ export default function ContractFarming() {
             title="Ready to explore a partnership?"
             text="Tell us about your land, location and preferred model — our team will assess the fit and walk you through the scheme in detail."
             cta="Apply for Contract Farming"
+            source="Farmer Partnership"
           />
         </div>
       </section>

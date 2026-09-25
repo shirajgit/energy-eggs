@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
+import EnquiryButton from '../components/EnquiryButton'
 import pastureFarmImg from '../assets/pasture-farm.jpeg'
 import deepLitterImg from '../assets/deep-litter-farm.jpeg'
 
@@ -84,7 +85,7 @@ export default function FarmDevelopment() {
               </Reveal>
             ))}
           </div>
-          <MiniCta center title="One partner. From land to poultry." cta="Build My Farm" />
+          <MiniCta center title="One partner. From land to poultry." cta="Build My Farm" source="Farm Development" />
         </div>
       </section>
 
@@ -161,7 +162,9 @@ export default function FarmDevelopment() {
                   <li key={p}><span className="chk">✓</span> {p}</li>
                 ))}
               </ul>
-              <Link to="/contact" className="btn" style={{ marginTop: 30 }}>Enquire About Pasture Farming</Link>
+              <span style={{ marginTop: 30, display: 'inline-block' }}>
+                <EnquiryButton className="btn" source="Enquire About Pasture Farming">Enquire About Pasture Farming</EnquiryButton>
+              </span>
             </Reveal>
           </div>
         </div>
@@ -205,6 +208,7 @@ export default function FarmDevelopment() {
             title="Have land? Let's assess it."
             text="Share your land size, location and the model you're considering — our team will help you understand what your site can support."
             cta="Start With a Site Assessment"
+            source="Farm Development"
           />
         </div>
       </section>

@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import Splash from './components/Splash'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Birds from './pages/Birds'
@@ -16,6 +17,7 @@ import Contact from './pages/Contact'
 export default function App() {
   return (
     <BrowserRouter>
+      <Splash />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
