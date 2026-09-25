@@ -8,6 +8,9 @@ type OpenOpts = {
   interest?: string // pre-filled interest line
   title?: string    // modal heading
   subtitle?: string
+  submitLabel?: string     // custom submit button text
+  sentText?: string        // custom thank-you body
+  onSubmitted?: () => void // called after a successful submit (e.g. start a download)
 }
 
 type Ctx = { open: (opts?: OpenOpts) => void }
@@ -66,7 +69,12 @@ function EnquiryDialog({ opts, onClose }: { opts: OpenOpts | null; onClose: () =
       email,
       details,
     })
-    setStatus(ok ? 'sent' : 'error')
+    if (ok) {
+      setStatus('sent')
+      opts?.onSubmitted?.()
+    } else {
+      setStatus('error')
+    }
   }
 
   return (
@@ -95,7 +103,7 @@ function EnquiryDialog({ opts, onClose }: { opts: OpenOpts | null; onClose: () =
             {status === 'sent' ? (
               <div className="modal-form modal-sent">
                 <h4>Enquiry received ✓</h4>
-                <p>Thanks{name ? `, ${name}` : ''}! Our B2B team will get back to you shortly.</p>
+                <p>{opts?.sentText || `Thanks${name ? `, ${name}` : ''}! Our B2B team will get back to you shortly.`}</p>
                 <div className="modal-actions">
                   <button type="button" className="btn" onClick={onClose}>Done</button>
                 </div>
@@ -137,7 +145,7 @@ function EnquiryDialog({ opts, onClose }: { opts: OpenOpts | null; onClose: () =
                   </label>
                   <div className="full modal-actions">
                     <button type="submit" className="btn" disabled={status === 'sending'}>
-                      {status === 'sending' ? 'Sending…' : 'Send Enquiry'}
+                      {status === 'sending' ? 'Sending…' : (opts?.submitLabel || 'Send Enquiry')}
                     </button>
                     <button type="button" className="btn ghost" onClick={onClose}>Cancel</button>
                   </div>

@@ -1,6 +1,7 @@
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
+import LockGate from '../components/LockGate'
 import pastureFarmImg from '../assets/pasture-farm.jpeg'
 import deepLitterImg from '../assets/deep-litter-farm.jpeg'
 import contractHeroImg from '../assets/contract-hero.jpg'
@@ -233,6 +234,13 @@ export default function ContractFarming() {
                 <h3>{m.name}</h3>
                 <p>{m.tag}</p>
               </div>
+              <LockGate
+                storageKey="ee-contract-unlocked"
+                source="Contract Farming"
+                interest={`${m.label} Contract Model`}
+                heading="View the full model details"
+                text="Enter a few details to unlock the specifications, responsibilities and support."
+              >
               <table className="spec-table">
                 <thead>
                   <tr>
@@ -267,6 +275,7 @@ export default function ContractFarming() {
                   </ul>
                 </div>
               </div>
+              </LockGate>
               </Reveal>
             </div>
           ))}

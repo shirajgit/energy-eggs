@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
+import RateActions from '../components/RateActions'
 import { BIRD_RATE_CARDS as RATE_CARDS } from '../data/rates'
 import sonaliImg from '../assets/sonali.png'
 import aseelImg from '../assets/aseel.png'
@@ -32,6 +33,8 @@ export default function Birds() {
           specialty desi poultry.
         </p>
       </PageHero>
+
+      <RateActions title="Bird Rate Card" />
 
       <section>
         <div className="wrap">

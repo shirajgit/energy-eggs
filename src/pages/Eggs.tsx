@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import Reveal from '../components/Reveal'
 import PageHero from '../components/PageHero'
 import MiniCta from '../components/MiniCta'
+import RateActions from '../components/RateActions'
 import EggMark from '../components/EggMark'
 import { EGG_RATES, PROCESSING_CHARGES } from '../data/rates'
 
@@ -30,6 +31,8 @@ export default function Eggs() {
       <PageHero eyebrow="Desi Eggs" title={<>Specialty eggs. <span>Reliable supply.</span></>}>
         <p>Energy Eggs supplies desi eggs to B2B customers across food, retail and hospitality.</p>
       </PageHero>
+
+      <RateActions title="Egg Rate Card" />
 
       <section>
         <div className="wrap">

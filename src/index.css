@@ -803,3 +803,77 @@ footer p{font-size:.92rem;max-width:34ch}
   .navlinks.open,.navlinks.open>*{animation:none}
   .burger i{transition:none}
 }
+
+/* ---- rate card download / share actions ---- */
+.rate-actions-bar{background:var(--cream-2);border-bottom:1px solid var(--line)}
+.rate-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:16px 24px}
+.rate-actions .btn{display:inline-flex;align-items:center;gap:8px}
+.rate-actions .btn svg{width:17px;height:17px;flex:none}
+
+/* ---- locked rates (blur until lead captured) ---- */
+.rate-lock{position:relative;border-radius:20px;overflow:hidden}
+.rate-lock-content{filter:blur(7px);pointer-events:none;user-select:none;opacity:.9}
+.rate-lock-veil{position:absolute;inset:0;display:grid;place-items:center;padding:20px;background:linear-gradient(180deg,rgba(253,247,238,.55),rgba(253,247,238,.78))}
+.rate-lock-card{max-width:380px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 26px;box-shadow:var(--shadow)}
+.rate-lock-card svg{width:34px;height:34px;color:var(--orange);margin-bottom:8px}
+.rate-lock-card h4{font-size:1.15rem;margin-bottom:6px}
+.rate-lock-card p{font-size:.9rem;color:var(--brown-soft);margin-bottom:16px}
+@media print{
+  .rate-lock-content{filter:none !important;opacity:1 !important}
+  .rate-lock-veil{display:none !important}
+}
+
+.card-cta-actions{gap:10px;flex-wrap:wrap}
+.rate-icon-btn{display:inline-flex;align-items:center;gap:7px}
+.rate-icon-btn svg{width:16px;height:16px;flex:none}
+
+/* print letterhead + all-breed block — hidden on screen */
+.print-head{display:none}
+.print-birds{display:none}
+
+/* ---- print: clean, downloadable rate card ---- */
+@media print{
+  header,footer,.fab-stack,.marquee,.scroll-progress,.page-hero,.mini-cta,.card-cta,.chip-row,.rate-tabs,.rate-actions-bar,.modal-backdrop,.nav-scrim,.breed-card,.cards-2,.cards-3,.values,.features,.features-3,.features-4,.print-hide,.screen-only{display:none !important}
+  /* rate-card page: print only the chosen card (birds or eggs) */
+  body.pm-birds #egg-rates,body.pm-birds .print-head-eggs{display:none !important}
+  body.pm-eggs #bird-rates,body.pm-eggs .print-head-birds{display:none !important}
+  body.pm-eggs .print-head-eggs{display:flex !important}
+  body.pm-eggs #egg-rates{display:block !important}
+  body.pm-eggs .tier-list,body.pm-eggs .addon-grid{display:grid !important}
+  body.pm-birds .print-birds{display:block !important}
+  /* one breed per page — keep each table whole, start the next on a new page */
+  .print-birds .rate-card.model{margin:0 0 10px;break-inside:avoid;page-break-inside:avoid;break-after:page;page-break-after:always}
+  .print-birds .rate-card.model:last-of-type{break-after:auto;page-break-after:auto}
+  /* bird notes: clean footer line, kept on the last page */
+  .print-birds .print-notes{margin-top:10px;padding-top:8px;border-top:1px solid #ddd;break-inside:avoid;page-break-inside:avoid;display:block}
+  .print-birds .print-notes .pill{display:inline;background:none;border:0;padding:0;margin:0;font-size:.74rem;font-weight:500;letter-spacing:normal;text-transform:none;color:#000}
+  .print-birds .print-notes .pill:not(:last-child)::after{content:"  ·  ";color:#888}
+  body{background:#fff;color:#000}
+  main{padding:0}
+  section,section.alt{padding:14px 0;background:#fff !important}
+  .wrap{max-width:100%;padding:0 12mm}
+  .print-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 12mm 10px;margin-bottom:8px;border-bottom:2px solid var(--orange)}
+  .print-head img{height:46px;width:auto}
+  .print-head-meta{text-align:right;line-height:1.4}
+  .print-head-meta strong{display:block;font-size:1.1rem;color:var(--brown)}
+  .print-head-meta span{font-size:.72rem;color:var(--brown-soft)}
+  .sec-head{margin-bottom:6px;text-align:left}
+  .sec-head h2{font-size:1.1rem;margin:0}
+  .sec-head p{font-size:.82rem;margin:2px 0 0}
+  /* let the tall bird table flow and start on page 1 — don't force it to a new page */
+  .rate-card.model,.model.compare-model{box-shadow:none;border:1px solid #ddd;break-inside:auto;page-break-inside:auto;margin:0}
+  .model-top,.model-top-flex{padding:8px 12px !important}
+  .model-top h3{font-size:1rem;margin:0}
+  .model-top p{font-size:.75rem;margin:2px 0 0}
+  .rate-table-wrap{overflow:visible !important;max-height:none !important}
+  .spec-table{break-inside:auto}
+  .spec-table thead{display:table-header-group}
+  .spec-table tr{break-inside:avoid;page-break-inside:avoid}
+  .spec-table th{background:var(--orange-soft) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .spec-table th,.spec-table td{padding:4px 8px;font-size:.72rem}
+  .tier-list{gap:6px}
+  .tier,.addon{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
+  .model-top-bird,.rate-mini{display:none}
+  a[href]::after{content:""}
+  @page{margin:10mm}
+}
